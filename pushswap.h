@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:28:19 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/23 15:13:56 by vde-leus         ###   ########.fr       */
+/*   Updated: 2022/12/23 16:46:06 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,9 @@ void			ft_double_reverse_rotate(t_stack_list **stack1, \
 
 int				ft_is_int(int number, char *str, int count);
 int				ft_is_already_present(int number, int *tab, int taille);
+
+int				*ft_sort(int *tab, int argc);
+int				*ft_tab_copy(int *tab, int argc);
+int				ft_get_mediane(int *tab, int argc);
 
 #endif

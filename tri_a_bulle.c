@@ -6,44 +6,58 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:27:36 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/22 15:53:56 by vde-leus         ###   ########.fr       */
+/*   Updated: 2022/12/23 16:45:46 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "pushswap.h"
 
-#define SIZE_TAB 10
-
-int	main(void)
+int	*ft_tab_copy(int *tab, int argc)
 {
-	int	tab[10] = {4, -1, 8, 12, 33, -6, 23, 2, 28, 24};
+	int	*sorted_tab;
+	int	i;
+
+	sorted_tab = ft_calloc(sizeof(int), argc -1);
+	i = 0;
+	while (i <= argc - 2)
+	{
+		sorted_tab[i] = tab[i];
+		i++;
+	}
+	return (sorted_tab);
+}
+
+int	*ft_sort(int *tab, int argc)
+{
+	int	*sorted_tab;
 	int	temp;
 	int	i;
 	int	j;
 
+	sorted_tab = ft_tab_copy(tab, argc);
 	i = 0;
-	while (i < SIZE_TAB - 1)
+	while (i < argc - 2)
 	{
 		j = 0;
-		while (j < SIZE_TAB - i - 1)
+		while (j < argc - i - 2)
 		{
-			if (tab[j] > tab[j + 1])
+			if (sorted_tab[j] > sorted_tab[j + 1])
 			{
-				temp = tab[j + 1];
-				tab[j + 1] = tab[j];
-				tab[j] = temp;
+				temp = sorted_tab[j + 1];
+				sorted_tab[j + 1] = sorted_tab[j];
+				sorted_tab[j] = temp;
 			}
 			j++;
 		}
 		i++;
 	}
-	j = 0;
-	while (j <= SIZE_TAB - 1)
-	{
-		printf("%d\n", tab[j]);
-		j++;
-	}
-	return (0);
+	return (sorted_tab);
+}
+
+int	ft_get_mediane(int *tab, int argc)
+{
+	if ((argc - 1) % 2 == 0)
+		return (tab[((argc - 1) - 1) / 2]);
+	else
+		return (tab[(argc - 1) / 2]);
 }
