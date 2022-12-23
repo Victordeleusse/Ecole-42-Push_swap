@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:32:33 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/23 12:03:27 by vde-leus         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:13:48 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	*ft_generate_tab_int(int argc, char **argv)
 {
 	int	i;
+	int	number;
 	int	*tab;
 	int	count;
 
@@ -23,9 +24,12 @@ int	*ft_generate_tab_int(int argc, char **argv)
 	while (i < argc - 1)
 	{
 		count = 0;
-		tab[i] = ft_atoi(argv[i + 1], &count);
-		if (count == 0)
+		number = ft_atoi(argv[i + 1], &count);
+		if (ft_is_int(number, argv[i + 1], count) == 0)
 			return (NULL);
+		if (ft_is_already_present(number, tab, i) == 0)
+			return (NULL);
+		tab[i] = number;
 		i++;
 	}
 	return (tab);

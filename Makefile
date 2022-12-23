@@ -1,4 +1,4 @@
-SRCS = main.c lecture.c swap_push.c rotate_reverse.c operation.c 
+SRCS = main.c lecture.c swap_push.c rotate_reverse.c operation.c error.c
 OBJS = ${SRCS:.c=.o}
 DEPS = ${SRCS:.c=.d}
 

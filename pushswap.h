@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:28:19 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/23 11:15:00 by vde-leus         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:13:56 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,10 @@ void			ft_double_rotate(t_stack_list **stack1, t_stack_list **stack2);
 void			ft_reverse_rotate(t_stack_list **stack);
 void			ft_double_reverse_rotate(t_stack_list **stack1, \
 			t_stack_list **stack2);
+
+/////////////////////////////// ERROR.C////////////////////////////////
+
+int				ft_is_int(int number, char *str, int count);
+int				ft_is_already_present(int number, int *tab, int taille);
 
 #endif
