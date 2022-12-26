@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:27:36 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/23 16:45:46 by vde-leus         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:23:15 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,20 @@ int	ft_get_mediane(int *tab, int argc)
 		return (tab[((argc - 1) - 1) / 2]);
 	else
 		return (tab[(argc - 1) / 2]);
+}
+
+int	ft_stop_index(int *tab, int argc)
+{
+	int	*sorted_tab;
+	int	i;
+
+	sorted_tab = ft_sort(tab, argc);
+	i = argc - 2;
+	while (i >= 0)
+	{
+		if (sorted_tab[i] == tab[i])
+			break ;
+		i--;
+	}
+	return (i);
 }
