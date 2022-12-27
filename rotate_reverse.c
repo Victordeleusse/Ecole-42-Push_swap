@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:20:18 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/26 19:24:05 by vde-leus         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:55:56 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_double_rotate(t_stack_list **stack_a, t_stack_list **stack_b, \
 {
 	ft_rotate_a(stack_a, count);
 	ft_rotate_b(stack_b, count);
+	count--;
 }
 
 /* le dernier element de la pile devient le premier */
@@ -78,4 +79,5 @@ void	ft_double_reverse_rotate(t_stack_list **stack_a, \
 {
 	ft_reverse_rotate_a(stack_a, count);
 	ft_reverse_rotate_b(stack_b, count);
+	count--;
 }

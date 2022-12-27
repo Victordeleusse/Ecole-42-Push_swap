@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:28:19 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/26 19:22:02 by vde-leus         ###   ########.fr       */
+/*   Updated: 2022/12/27 16:03:41 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 typedef struct s_stack_list
 {
 	int					data;
+	int					index_sorted;
 	struct s_stack_list	*previous;
 	struct s_stack_list	*next;
 }t_stack_list;
@@ -69,8 +70,9 @@ int				ft_is_already_present(int number, int *tab, int taille);
 
 int				*ft_sort(int *tab, int argc);
 int				*ft_tab_copy(int *tab, int argc);
-int				ft_get_mediane(int *tab, int argc);
-int				ft_stop_index(int *tab, int argc);
+int				ft_get_mediane_value(int *tab, int argc);
+int				ft_get_mediane_index(int argc);
+void			ft_get_index_sorted(t_stack_list **stack_a, int *tab, int argc);
 
 /////////////////////////////// UTILS_v0.C////////////////////////////////
 
@@ -89,6 +91,9 @@ void			ft_sort_3(t_stack_list **stack_a, int *count);
 
 /////////////////////////////// UTILS_v5.C////////////////////////////////
 
-void			ft_sort_5(t_stack_list **stack_a, int *count);
+int				ft_is_circular(t_stack_list **stack_a);
+void			ft_first_move(t_stack_list **stack_a, \
+			t_stack_list **stack_b, int *count);
+int				ft_is_sorted(t_stack_list **stack_a);
 
 #endif

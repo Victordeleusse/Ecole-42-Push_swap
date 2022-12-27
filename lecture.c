@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:32:33 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/23 15:13:48 by vde-leus         ###   ########.fr       */
+/*   Updated: 2022/12/27 11:21:15 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_stack_list	*ft_generate_stack_element(int number)
 
 	element = ft_calloc(sizeof(t_list), 1);
 	element->data = number;
+	element->index_sorted = 0;
 	return (element);
 }
 

@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:27:36 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/26 16:23:15 by vde-leus         ###   ########.fr       */
+/*   Updated: 2022/12/27 15:27:20 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,33 @@ int	*ft_sort(int *tab, int argc)
 	return (sorted_tab);
 }
 
-int	ft_get_mediane(int *tab, int argc)
+
+void	ft_get_index_sorted(t_stack_list **stack_a, int *tab, int argc)
+{
+	t_stack_list	*begin;
+	int				*sorted_tab;
+	int				i;
+
+	sorted_tab = ft_sort(tab, argc);
+	i = 0;
+	while (i < argc - 1)
+	{
+		begin = *stack_a;
+		while (begin)
+		{
+			if (sorted_tab[i] == begin->data)
+			{
+				begin->index_sorted = i;
+				break ;
+			}
+			else
+				begin = begin->next;
+		}
+		i++;
+	}
+}
+
+int	ft_get_mediane_value(int *tab, int argc)
 {
 	if ((argc - 1) % 2 == 0)
 		return (tab[((argc - 1) - 1) / 2]);
@@ -62,18 +88,10 @@ int	ft_get_mediane(int *tab, int argc)
 		return (tab[(argc - 1) / 2]);
 }
 
-int	ft_stop_index(int *tab, int argc)
+int	ft_get_mediane_index(int argc)
 {
-	int	*sorted_tab;
-	int	i;
-
-	sorted_tab = ft_sort(tab, argc);
-	i = argc - 2;
-	while (i >= 0)
-	{
-		if (sorted_tab[i] == tab[i])
-			break ;
-		i--;
-	}
-	return (i);
+	if ((argc - 1) % 2 == 0)
+		return (((argc - 1) - 1) / 2);
+	else
+		return ((argc - 1) / 2);
 }

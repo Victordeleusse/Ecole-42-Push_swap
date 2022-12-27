@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 09:53:56 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/26 19:25:28 by vde-leus         ###   ########.fr       */
+/*   Updated: 2022/12/27 17:55:35 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	ft_double_swap(t_stack_list **stack1, t_stack_list **stack2, int *count)
 {
 	ft_swap_a(stack1, count);
 	ft_swap_b(stack2, count);
+	count--;
 }
 
 /* premier element de 1 vers haut de la pile 2 */
