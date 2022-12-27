@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:15:27 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/27 16:10:59 by vde-leus         ###   ########.fr       */
+/*   Updated: 2022/12/27 18:15:26 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	t_stack_list	*begin_a;
 	int				count;
 	int 			mediane;
-	int				is_circulaire;
+	// int				is_circulaire;
 
 	count = 0;
 	tab = ft_generate_tab_int(argc, argv);
@@ -32,8 +32,8 @@ int	main(int argc, char **argv)
 	// ft_sort_3(stack_a, &count);
 	mediane = ft_get_mediane_index(argc);
 	printf("Mediane index : %d\n", mediane);
-	is_circulaire = ft_is_circular(stack_a);
-	printf("Circulaire ? %d\n", is_circulaire);
+	// is_circulaire = ft_is_circular(stack_a);
+	// printf("Circulaire ? %d\n", is_circulaire);
 	begin_a = *stack_a;
 	while (begin_a)
 	{
