@@ -6,107 +6,95 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 12:01:06 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/27 16:38:44 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/01 22:19:20 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-/* Determine le minimum dans mon stack */
+/* Determine la mediane de mon stack : son indice aka sa position
+// ainsi que sa valeur */
 
-// int	ft_get_pos_min(t_stack_list **stack_a)
-// {
-// 	t_stack_list	*min_stack;
-// 	t_stack_list	*begin_stack;
-// 	int				pos_min;
-// 	int				k;
+int	ft_get_stack_size(t_stack_list **stack)
+{
+	int				size_stack;
+	t_stack_list	*begin;
 
-// 	pos_min = 0;
-// 	k = 0;
-// 	if (!*stack_a)
-// 		return (0);
-// 	min_stack = *stack_a;
-// 	begin_stack = *stack_a;
-// 	if (!min_stack->next)
-// 		return (0);
-// 	while (begin_stack)
-// 	{
-// 		if (min_stack->data > begin_stack->data)
-// 		{
-// 			min_stack = begin_stack;
-// 			pos_min = k;
-// 		}
-// 		begin_stack = begin_stack->next;
-// 		k++;
-// 	}
-// 	return (pos_min);
-// }
+	if (!*stack)
+		return (0);
+	begin = *stack;
+	size_stack = 0;
+	while (begin)
+	{
+		begin = begin->next;
+		size_stack++;
+	}
+	return (size_stack);
+}
 
-/* Positionne mon plus petit element en haut de mon stack */
+int	ft_get_index_max(t_stack_list **stack)
+{
+	int				index_max;
+	t_stack_list	*begin;
 
-// void	ft_get_min_first(t_stack_list **stack_a, int *size_stack, int *count)
-// {
-// 	int	middle;
-// 	int	pos_min;
+	begin = *stack;
+	index_max = begin->index_sorted;
+	while (begin->next)
+	{	
+		begin = begin->next;
+		if (index_max < begin->index_sorted)
+			index_max = begin->index_sorted;
+	}
+	return (index_max);
+}
 
-// 	if (*size_stack % 2 == 0)
-// 		middle = *size_stack / 2;
-// 	else
-// 		middle = (*size_stack + 1) / 2;
-// 	pos_min = ft_get_pos_min(stack_a);
-// 	if (pos_min <= middle)
-// 	{
-// 		while (pos_min != 0)
-// 		{	
-// 			ft_rotate(stack_a, count);
-// 			pos_min--;
-// 		}
-// 	}
-// 	else
-// 	{
-// 		pos_min = *size_stack - pos_min;
-// 		while (pos_min != 0)
-// 		{
-// 			ft_reverse_rotate(stack_a, count);
-// 			pos_min--;
-// 		}
-// 	}
-// }
+int	ft_get_index_min(t_stack_list **stack)
+{
+	int				index_min;
+	t_stack_list	*begin;
 
-// void	ft_sort_stack_1(t_stack_list **stack_1, t_stack_list **stack_2, \
-// 	int *count, int *size_stack_1)
-// {
-// 	int	size_stack_2_theo;
+	begin = *stack;
+	index_min = begin->index_sorted;
+	while (begin->next)
+	{	
+		begin = begin->next;
+		if (index_min > begin->index_sorted)
+			index_min = begin->index_sorted;
+	}
+	return (index_min);
+}
 
-// 	size_stack_2_theo = *size_stack_1 - 1;
-// 	while (*size_stack_1 != 1)
-// 	{
-// 		ft_get_min_first(stack_1, size_stack_1, count);
-// 		ft_push(stack_1, stack_2, count, size_stack_1);
-// 	}
-// 	while (size_stack_2_theo != 0)
-// 		ft_push(stack_2, stack_1, count, &size_stack_2_theo);
-// }
+/* !! Calcul de la mediane sup !! */
 
-/* Renvoie 1 si le stack est trie du plus petit au plus grand, 0 sinon */
+int	ft_get_mediane_index(t_stack_list **stack)
+{
+	int	index_max;
+	int	index_min;
+	int	delta;
 
-// int	ft_is_sorted(t_stack_list **stack_a)
-// {
-// 	t_stack_list	*begin_a;
-// 	int				is_sorted;
+	index_max = ft_get_index_max(stack);
+	index_min = ft_get_index_min(stack);
+	printf("indice min : %d vs indice max : %d\n", index_min, index_max);
+	delta = index_max - index_min + 3;
+	if (delta % 2 == 0)
+		return ((delta - 1) / 2 + 1);
+	else
+		return (delta / 2);
+}
 
-// 	is_sorted = 1;
-// 	if (!*stack_a || !(*stack_a)->next)
-// 		return (is_sorted);
-// 	begin_a = *stack_a;
-// 	while (begin_a->next)
-// 	{
-// 		if (begin_a->index_sorted > begin_a->next->index_sorted)
-// 		{
-// 			is_sorted = 0;
-// 			break ;
-// 		}
-// 		begin_a = begin_a->next;
-// 	}
-// 	return (is_sorted);
-// }
+int	ft_get_mediane_position(t_stack_list **stack)
+{
+	int				mediane;
+	int				position;
+	t_stack_list	*begin;
+	
+	position = 1;
+	mediane = ft_get_mediane_index(stack);
+	begin = *stack;
+	while (begin->index_sorted != mediane && position <= 5)
+	{
+		begin = begin->next;
+		position++;	
+	}
+	return (position);
+}

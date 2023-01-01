@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:28:19 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/27 16:03:41 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/01 22:51:42 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_stack_list
 {
 	int					data;
 	int					index_sorted;
+	int 				bloc;
 	struct s_stack_list	*previous;
 	struct s_stack_list	*next;
 }t_stack_list;
@@ -70,16 +71,17 @@ int				ft_is_already_present(int number, int *tab, int taille);
 
 int				*ft_sort(int *tab, int argc);
 int				*ft_tab_copy(int *tab, int argc);
-int				ft_get_mediane_value(int *tab, int argc);
-int				ft_get_mediane_index(int argc);
+int				ft_get_mediane_value(int *tab, int size_tab);
+int				ft_get_mediane_index(t_stack_list **stack);
 void			ft_get_index_sorted(t_stack_list **stack_a, int *tab, int argc);
 
 /////////////////////////////// UTILS_v0.C////////////////////////////////
 
-void			ft_get_min_first(t_stack_list **stack_a, int *size_stack, \
-			int *count);
-void			ft_sort_stack_1(t_stack_list **stack_1, t_stack_list **stack_2, \
-			int *count, int *size_stack_1);
+int				ft_get_stack_size(t_stack_list **tab);
+int				ft_get_index_max(t_stack_list **stack);
+int				ft_get_index_min(t_stack_list **stack);
+int				ft_get_mediane_index(t_stack_list **stack);
+int				ft_get_mediane_position(t_stack_list **stack);
 
 /////////////////////////////// UTILS_v3.C////////////////////////////////	
 
@@ -91,9 +93,7 @@ void			ft_sort_3(t_stack_list **stack_a, int *count);
 
 /////////////////////////////// UTILS_v5.C////////////////////////////////
 
-int				ft_is_circular(t_stack_list **stack_a);
-void			ft_first_move(t_stack_list **stack_a, \
-			t_stack_list **stack_b, int *count);
-int				ft_is_sorted(t_stack_list **stack_a);
+int				ft_get_distance(t_stack_list **stack, int mediane_index);
+void			ft_prepare_stack(t_stack_list **stack1, t_stack_list **stack2, int *count);
 
 #endif
