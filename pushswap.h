@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:28:19 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/01 22:51:42 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/02 11:00:18 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_stack_list
 {
 	int					data;
 	int					index_sorted;
-	int 				bloc;
+	int					bloc;
 	struct s_stack_list	*previous;
 	struct s_stack_list	*next;
 }t_stack_list;
@@ -94,6 +94,10 @@ void			ft_sort_3(t_stack_list **stack_a, int *count);
 /////////////////////////////// UTILS_v5.C////////////////////////////////
 
 int				ft_get_distance(t_stack_list **stack, int mediane_index);
-void			ft_prepare_stack(t_stack_list **stack1, t_stack_list **stack2, int *count);
+void			ft_prepare_stack_4(t_stack_list **stack1, \
+					t_stack_list **stack2, int *count);
+void			ft_prepare_stack_3(t_stack_list **stack1, \
+					t_stack_list **stack2, int *count);
+void			ft_sort_5(t_stack_list **stack1, t_stack_list **stack2, int *count);
 
 #endif

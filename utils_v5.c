@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 18:48:16 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/01 22:46:21 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/02 11:02:54 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ int	ft_get_distance(t_stack_list **stack, int mediane_index)
 		return(distance_end);
 }
 
-void	ft_prepare_stack(t_stack_list **stack1, t_stack_list **stack2, int *count)
+void	ft_prepare_stack_4(t_stack_list **stack1, t_stack_list **stack2, int *count)
 {
 	int	distance;
 	int	mediane_index;
 
 	mediane_index = ft_get_mediane_index(stack1);
 	distance = ft_get_distance(stack1, mediane_index);
+	printf("distance : %d\n", distance);
 	if (distance == 0)
 		ft_push_a_to_b(stack1, stack2, count);
 	if (distance == 1)
@@ -61,9 +62,60 @@ void	ft_prepare_stack(t_stack_list **stack1, t_stack_list **stack2, int *count)
 		ft_rotate_a(stack1, count);
 		ft_push_a_to_b(stack1, stack2, count);
 	}
-	if (distance == 4 || distance == 3)
+	if (distance == 3)
+	{
+		ft_reverse_rotate_a(stack1, count);
+		ft_reverse_rotate_a(stack1, count);
+		ft_push_a_to_b(stack1, stack2, count);
+	}
+	if (distance == 4)
+	{
+		ft_reverse_rotate_a(stack1, count);
+		ft_push_a_to_b(stack1, stack2, count);
+	}	
+}
+
+void	ft_prepare_stack_3(t_stack_list **stack1, t_stack_list **stack2, int *count)
+{
+	int	distance;
+	int	mediane_index;
+
+	mediane_index = ft_get_mediane_index(stack1);
+	distance = ft_get_distance(stack1, mediane_index);
+	printf("distance : %d\n", distance);
+	if (distance == 0)
+		ft_push_a_to_b(stack1, stack2, count);
+	if (distance == 1)
+	{
+		ft_swap_a(stack1, count);
+		ft_push_a_to_b(stack1, stack2, count);
+	}
+	if (distance == 2)
+	{
+		ft_rotate_a(stack1, count);
+		ft_rotate_a(stack1, count);
+		ft_push_a_to_b(stack1, stack2, count);
+	}
+	if (distance == 3)
 	{
 		ft_reverse_rotate_a(stack1, count);
 		ft_push_a_to_b(stack1, stack2, count);
 	}
+}
+
+void	ft_sort_5(t_stack_list **stack1, t_stack_list **stack2, int *count)
+{
+	t_stack_list	*begin2;
+
+	ft_prepare_stack_4(stack1, stack2, count);
+	ft_prepare_stack_3(stack1, stack2, count);
+	ft_sort_3(stack1, count);
+	if (*stack2 && (*stack2)->next)
+	{
+		begin2 = *stack2;
+		if (begin2->index_sorted < begin2->next->index_sorted)
+			ft_swap_b(stack2, count);
+	}	
+	ft_push_b_to_a(stack2, stack1, count);
+	ft_push_b_to_a(stack2, stack1, count);
 }
