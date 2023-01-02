@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 12:01:06 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/02 10:30:57 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:12:46 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	ft_get_index_max(t_stack_list **stack)
 	index_max = begin->index_sorted;
 	while (begin->next)
 	{	
-		begin = begin->next;
 		if (index_max < begin->index_sorted)
 			index_max = begin->index_sorted;
+		begin = begin->next;
 	}
 	return (index_max);
 }
@@ -57,9 +57,9 @@ int	ft_get_index_min(t_stack_list **stack)
 	index_min = begin->index_sorted;
 	while (begin->next)
 	{	
-		begin = begin->next;
 		if (index_min > begin->index_sorted)
 			index_min = begin->index_sorted;
+		begin = begin->next;
 	}
 	return (index_min);
 }
@@ -74,7 +74,6 @@ int	ft_get_mediane_index(t_stack_list **stack)
 
 	index_max = ft_get_index_max(stack);
 	index_min = ft_get_index_min(stack);
-	// printf("indice min : %d vs indice max : %d\n", index_min, index_max);
 	delta = index_max - index_min + 3;
 	if (delta % 2 == 0)
 		return ((delta - 1) / 2 + 1);

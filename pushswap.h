@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:28:19 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/02 12:03:16 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:12:31 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,14 @@ int				ft_get_mediane_position(t_stack_list **stack);
 
 int				ft_get_pos_min(t_stack_list **stack_a);
 void			ft_case_beginning(t_stack_list **stack_a, int *count);
-void			ft_case_end(t_stack_list **stack_a, int *count);
-void			ft_case_middle(t_stack_list **stack_a, int *count);
-void			ft_sort_3(t_stack_list **stack_a, int *count);
+void			ft_case_end(t_stack_list **stack_a, int *count, int size_stack_a);
+void			ft_case_middle(t_stack_list **stack_a, int *count, int size_stack_a);
+void			ft_sort_3(t_stack_list **stack_a, int *count, int size_stack_a);
 
 /////////////////////////////// UTILS_v5.C////////////////////////////////
 
-int				ft_already_sort_5(t_stack_list **stack);
-int				ft_get_distance(t_stack_list **stack, int mediane_index);
+int				ft_already_sort_5(t_stack_list **stack, int bloc);
+int				ft_get_distance(t_stack_list **stack, int mediane_index, int bloc);
 void			ft_prepare_stack_4(t_stack_list **stack1, \
 					t_stack_list **stack2, int *count, int mediane_index);
 void			ft_prepare_stack_3(t_stack_list **stack1, \
@@ -102,5 +102,20 @@ void			ft_prepare_stack_3(t_stack_list **stack1, \
 void	ft_prepare_stack_3_bis(t_stack_list **stack1, t_stack_list **stack2, \
 					int *count, int mediane_index);
 void			ft_sort_5(t_stack_list **stack1, t_stack_list **stack2, int *count);
+
+/////////////////////////////// UTILS_v10.C////////////////////////////////
+
+// int				ft_get_distance_multibloc(t_stack_list **stack, int mediane_index, int bloc);
+// int				ft_prepare_stack_4_multibloc(t_stack_list **stack1, t_stack_list **stack2, int *count, int mediane_index);
+// void			ft_prepare_stack_3_multibloc(t_stack_list **stack1, t_stack_list **stack2, int *count, int mediane_index);
+// void			ft_prepare_stack_3_bis_multibloc(t_stack_list **stack1, t_stack_list **stack2, int *count, int mediane_index);
+// void			ft_sort_10(t_stack_list **stack1, t_stack_list **stack2, int *count);
+
+/////////////////////////////// UTILS_v10.C////////////////////////////////
+
+int			ft_distance_10(t_stack_list **stack, int size_stack_init);
+void		ft_exit_case_10(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int size_stack, int size_stack_init);
+void		ft_separate_stack(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int size_stack_init);
+
 
 #endif
