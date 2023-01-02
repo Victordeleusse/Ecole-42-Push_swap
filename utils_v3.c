@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:31:21 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/27 11:20:26 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:12:34 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_case_middle(t_stack_list **stack_a, int *count)
 	if (begin->data < begin->next->next->data)
 		ft_swap_a(stack_a, count);
 	else
-		ft_reverse_rotate_a(stack_a, count);
+		ft_rotate_a(stack_a, count);
 	return ;
 }
 

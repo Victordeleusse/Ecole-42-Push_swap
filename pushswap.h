@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:28:19 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/02 11:00:18 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:03:16 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,14 @@ void			ft_sort_3(t_stack_list **stack_a, int *count);
 
 /////////////////////////////// UTILS_v5.C////////////////////////////////
 
+int				ft_already_sort_5(t_stack_list **stack);
 int				ft_get_distance(t_stack_list **stack, int mediane_index);
 void			ft_prepare_stack_4(t_stack_list **stack1, \
-					t_stack_list **stack2, int *count);
+					t_stack_list **stack2, int *count, int mediane_index);
 void			ft_prepare_stack_3(t_stack_list **stack1, \
-					t_stack_list **stack2, int *count);
+					t_stack_list **stack2, int *count, int mediane_index);
+void	ft_prepare_stack_3_bis(t_stack_list **stack1, t_stack_list **stack2, \
+					int *count, int mediane_index);
 void			ft_sort_5(t_stack_list **stack1, t_stack_list **stack2, int *count);
 
 #endif

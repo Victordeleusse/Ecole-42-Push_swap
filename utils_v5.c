@@ -6,11 +6,28 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 18:48:16 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/02 11:02:54 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/02 12:06:36 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+int	ft_already_sort_5(t_stack_list **stack)
+{
+	t_stack_list	*begin;
+	int				i;
+
+	i = 1;
+	begin = *stack;
+	while (begin)
+	{
+		if (begin->index_sorted != i)
+			return (0);
+		begin = begin->next;
+		i++;
+	}
+	return (1);
+}
 
 int	ft_get_distance(t_stack_list **stack, int mediane_index)
 {
@@ -41,12 +58,10 @@ int	ft_get_distance(t_stack_list **stack, int mediane_index)
 		return(distance_end);
 }
 
-void	ft_prepare_stack_4(t_stack_list **stack1, t_stack_list **stack2, int *count)
+void	ft_prepare_stack_4(t_stack_list **stack1, t_stack_list **stack2, int *count, int mediane_index)
 {
 	int	distance;
-	int	mediane_index;
 
-	mediane_index = ft_get_mediane_index(stack1);
 	distance = ft_get_distance(stack1, mediane_index);
 	printf("distance : %d\n", distance);
 	if (distance == 0)
@@ -75,12 +90,37 @@ void	ft_prepare_stack_4(t_stack_list **stack1, t_stack_list **stack2, int *count
 	}	
 }
 
-void	ft_prepare_stack_3(t_stack_list **stack1, t_stack_list **stack2, int *count)
+void	ft_prepare_stack_3(t_stack_list **stack1, t_stack_list **stack2, int *count, int mediane_index)
 {
 	int	distance;
-	int	mediane_index;
 
-	mediane_index = ft_get_mediane_index(stack1);
+	distance = ft_get_distance(stack1, mediane_index);
+	printf("distance : %d\n", distance);
+	if (distance == 0)
+		ft_push_a_to_b(stack1, stack2, count);
+	if (distance == 1)
+	{
+		ft_swap_a(stack1, count);
+		ft_push_a_to_b(stack1, stack2, count);
+	}
+	if (distance == 2)
+	{
+		ft_rotate_a(stack1, count);
+		ft_rotate_a(stack1, count);
+		ft_push_a_to_b(stack1, stack2, count);
+	}
+	if (distance == 3)
+	{
+		ft_reverse_rotate_a(stack1, count);
+		ft_push_a_to_b(stack1, stack2, count);
+	}
+}
+
+void	ft_prepare_stack_3_bis(t_stack_list **stack1, t_stack_list **stack2, int *count, int mediane_index)
+{
+	int	distance;
+
+	mediane_index = ft_get_mediane_index(stack1) - 1;
 	distance = ft_get_distance(stack1, mediane_index);
 	printf("distance : %d\n", distance);
 	if (distance == 0)
@@ -106,9 +146,24 @@ void	ft_prepare_stack_3(t_stack_list **stack1, t_stack_list **stack2, int *count
 void	ft_sort_5(t_stack_list **stack1, t_stack_list **stack2, int *count)
 {
 	t_stack_list	*begin2;
-
-	ft_prepare_stack_4(stack1, stack2, count);
-	ft_prepare_stack_3(stack1, stack2, count);
+	int				size_stack1;
+	int 			mediane_index;
+	
+	if (ft_already_sort_5(stack1) == 1)
+		return ;
+	mediane_index = ft_get_mediane_index(stack1);
+	size_stack1 = ft_get_stack_size(stack1);
+	if (size_stack1 == 5)
+	{
+		printf("taille 5\n");
+		ft_prepare_stack_4(stack1, stack2, count, mediane_index);
+		ft_prepare_stack_3(stack1, stack2, count, mediane_index);
+	}
+	else if (size_stack1 == 4)
+	{
+		printf("taille 4\n");
+		ft_prepare_stack_3_bis(stack1, stack2, count, mediane_index);
+	}
 	ft_sort_3(stack1, count);
 	if (*stack2 && (*stack2)->next)
 	{
