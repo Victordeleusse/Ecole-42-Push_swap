@@ -6,29 +6,27 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 18:48:16 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/02 18:19:24 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/03 14:20:23 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int	ft_already_sort_5(t_stack_list **stack, int bloc)
+int	ft_already_sort_5(t_stack_list **stack)
 {
 	t_stack_list	*begin;
 
 	begin = *stack;
-	while (begin->next && begin->bloc == bloc)
+	while (begin->next)
 	{
-		// printf("indice : %d vs. indice suivant : %d\n", begin->index_sorted, begin->next->index_sorted);
 		if (begin->index_sorted > begin->next->index_sorted)
 			return (0);
 		begin = begin->next;
-		// printf("indice : %d et bloc : %d\n", begin->index_sorted, begin->bloc);
 	}
 	return (1);
 }
 
-int	ft_get_distance(t_stack_list **stack, int mediane_index, int bloc)
+int	ft_get_distance(t_stack_list **stack, int mediane_index)
 {
 	t_stack_list	*begin;
 	t_stack_list	*end;
@@ -39,7 +37,7 @@ int	ft_get_distance(t_stack_list **stack, int mediane_index, int bloc)
 	distance_end = 0;
 	begin = *stack;
 	end = *stack;
-	while (end->next && end->bloc == bloc)
+	while (end->next)
 	{
 		end = end->next;
 		distance_end++;
@@ -63,7 +61,7 @@ void	ft_prepare_stack_4(t_stack_list **stack1, t_stack_list **stack2, int *count
 	t_stack_list	*begin1;
 
 	begin1 = *stack1;
-	distance = ft_get_distance(stack1, mediane_index, begin1->bloc);
+	distance = ft_get_distance(stack1, mediane_index);
 	if (distance == 0)
 		ft_push_a_to_b(stack1, stack2, count);
 	if (distance == 1)
@@ -96,7 +94,7 @@ void	ft_prepare_stack_3(t_stack_list **stack1, t_stack_list **stack2, int *count
 	t_stack_list	*begin1;
 
 	begin1 = *stack1;
-	distance = ft_get_distance(stack1, mediane_index, begin1->bloc);
+	distance = ft_get_distance(stack1, mediane_index);
 	if (distance == 0)
 		ft_push_a_to_b(stack1, stack2, count);
 	if (distance == 1)
@@ -123,8 +121,8 @@ void	ft_prepare_stack_3_bis(t_stack_list **stack1, t_stack_list **stack2, int *c
 	t_stack_list	*begin1;
 
 	begin1 = *stack1;
-	distance = ft_get_distance(stack1, mediane_index, begin1->bloc);
-	mediane_index = ft_get_mediane_index(stack1) - 1;
+	mediane_index = ft_get_mediane_index(stack1);
+	distance = ft_get_distance(stack1, mediane_index);
 	if (distance == 0)
 		ft_push_a_to_b(stack1, stack2, count);
 	if (distance == 1)
@@ -153,8 +151,10 @@ void	ft_sort_5(t_stack_list **stack1, t_stack_list **stack2, int *count)
 	int 			mediane_index;
 	
 	begin1 = *stack1;
-	mediane_index = ft_get_mediane_index(stack1);
+	if (ft_already_sort_5(stack1))
+		return ;
 	size_stack1 = ft_get_stack_size(stack1);
+	mediane_index = ft_get_mediane_index(stack1);
 	if (size_stack1 == 5)
 	{
 		ft_prepare_stack_4(stack1, stack2, count, mediane_index);
