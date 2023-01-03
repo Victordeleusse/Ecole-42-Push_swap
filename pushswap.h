@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:28:19 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/03 14:38:21 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:04:49 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,12 @@ void		ft_exit_case_10(t_stack_list **stack_a, t_stack_list **stack_b, int *count
 void		ft_separate_stack(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int size_stack_init);
 int			ft_distance_max_in_b(t_stack_list **stack_b);
 void		ft_restore_b_to_a(t_stack_list **stack_b, t_stack_list **stack_a, int *count);
+
+/////////////////////////////// UTILS_v100.C////////////////////////////////
+
+void		ft_init_bloc(t_stack_list **stack_a, int size_init);
+int			ft_is_bloc_present(t_stack_list **stack_a, int bloc_searched);
+int			ft_distance_min_impair(t_stack_list **stack_a);
+int			ft_distance_min_pair(t_stack_list **stack_a);
 
 #endif

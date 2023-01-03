@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:27:36 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/02 14:20:56 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:35:39 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,10 @@ void	ft_get_index_sorted(t_stack_list **stack_a, int *tab, int argc)
 {
 	t_stack_list	*begin;
 	int				*sorted_tab;
-	int				bloc;
 	int				i;
 
 	sorted_tab = ft_sort(tab, argc);
 	i = 0;
-	bloc = 5;
 	while (i < argc - 1)
 	{
 		begin = *stack_a;
@@ -76,8 +74,6 @@ void	ft_get_index_sorted(t_stack_list **stack_a, int *tab, int argc)
 			if (sorted_tab[i] == begin->data)
 			{
 				begin->index_sorted = (i + 1);
-				begin->bloc = bloc / 5;
-				bloc++;
 				break ;
 			}
 			begin = begin->next;

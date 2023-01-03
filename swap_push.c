@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 09:53:56 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/27 17:55:35 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/03 14:57:21 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_push_a_to_b(t_stack_list **stack_a, t_stack_list **stack_b, \
 	elem_top = ft_pop_first(stack_a);
 	ft_add_first(stack_b, elem_top);
 	(*count)++;
-	ft_printf("pa\n");
+	ft_printf("pb\n");
 }
 
 void	ft_push_b_to_a(t_stack_list **stack_b, t_stack_list **stack_a, \
@@ -88,5 +88,5 @@ void	ft_push_b_to_a(t_stack_list **stack_b, t_stack_list **stack_a, \
 	elem_top = ft_pop_first(stack_b);
 	ft_add_first(stack_a, elem_top);
 	(*count)++;
-	ft_printf("pb\n");
+	ft_printf("pa\n");
 }
