@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:15:27 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/03 18:19:16 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:56:16 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	main(int argc, char **argv)
 	t_stack_list	*begin_a;
 	// t_stack_list	*begin_b;
 	int				count;
-	int				distance_imp;
-	int				distance_pair;
+	// int				distance_imp;
+	// int				distance_pair;
 
 	count = 0;
 	tab = ft_generate_tab_int(argc, argv);
@@ -41,6 +41,20 @@ int	main(int argc, char **argv)
 	else if (argc - 1 <= 100)
 	{
 		ft_init_bloc(stack_a, argc - 1);
+		// begin_a = *stack_a;
+		// while (begin_a)
+		// {
+		// 	printf("data : %d\n", begin_a->data);
+		// 	// printf("indice : %d\n", begin_a->index_sorted);
+		// 	printf("bloc : %d\n\n", begin_a->bloc);
+		// 	begin_a = begin_a->next;
+		// }
+		// distance_imp = ft_distance_min_impair(stack_a);
+		// distance_pair = ft_distance_min_pair(stack_a);
+		// printf("distance pour le premier impair : %d\n", distance_imp);
+		// printf("distance pour le premier pair : %d\n", distance_pair);
+		while ((*stack_a)->next)
+			ft_send_a_to_b(stack_a, stack_b, &count);
 		begin_a = *stack_a;
 		while (begin_a)
 		{
@@ -49,10 +63,6 @@ int	main(int argc, char **argv)
 			printf("bloc : %d\n\n", begin_a->bloc);
 			begin_a = begin_a->next;
 		}
-		distance_imp = ft_distance_min_impair(stack_a);
-		distance_pair = ft_distance_min_pair(stack_a);
-		printf("distance pour le premier impair : %d\n", distance_imp);
-		printf("distance pour le premier pair : %d\n", distance_pair);
 	}
 	printf("\nCOMPTEUR : %d\n\n\n", count);
 	return (0);

@@ -6,14 +6,14 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 18:33:56 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/23 11:16:30 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/04 09:49:54 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Operations on stack : extracting the first and the last elem,
 // adding an elem at the top or the bottom of a stack */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 t_stack_list	*ft_pop_first(t_stack_list **stack)
 {

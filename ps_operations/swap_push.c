@@ -6,13 +6,13 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 09:53:56 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/03 14:57:21 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/04 09:50:07 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Swap and Push rules */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 /* inversion du premier et du second element de la pile */
 

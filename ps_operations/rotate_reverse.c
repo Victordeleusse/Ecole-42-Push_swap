@@ -6,13 +6,13 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:20:18 by vde-leus          #+#    #+#             */
-/*   Updated: 2022/12/27 17:55:56 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/04 12:08:00 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* Rotate and Reverse Rotate rules */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 /* le premier element de la pile devient le dernier */
 
