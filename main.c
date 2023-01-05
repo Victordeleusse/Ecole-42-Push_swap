@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:15:27 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/05 14:18:11 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:08:41 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int	main(int argc, char **argv)
 	t_stack_list	**stack_a;
 	t_stack_list	**stack_b;
 	// t_stack_list	*begin_a;
-	t_stack_list	*begin_b;
+	// t_stack_list	*begin_b;
 	int				count;
-	int				size_a;
-	int				size_b;
+	// int				size_a;
+	// int				size_b;
 
 	count = 0;
 	tab = ft_generate_tab_int(argc, argv);
@@ -41,22 +41,22 @@ int	main(int argc, char **argv)
 	else if (argc - 1 <= 100)
 	{
 		ft_init_bloc(stack_a, argc - 1);
-		printf("\nFIRST STEP\n");
-		size_a = ft_get_stack_size(stack_a);
-		printf("size du stack A : %d\n", size_a);
+		// printf("\nFIRST STEP\n");
+		// size_a = ft_get_stack_size(stack_a);
+		// printf("size du stack A : %d\n", size_a);
 		while ((*stack_a))
 			ft_send_a_to_b(stack_a, stack_b, &count);
-		size_b = ft_get_stack_size(stack_b);
-		printf("size du stack B : %d\n", size_b);
-		printf("\nAFFICHAGE DE B\n");
-		begin_b = *stack_b;
-		while (begin_b)
-		{
-			printf("indice : %d\n", begin_b->index_sorted);
-			printf("bloc : %d\n\n", begin_b->bloc);
-			begin_b = begin_b->next;
-		}
-		printf("\nFIN DE L'AFFICHAGE DE B\n");
+		// size_b = ft_get_stack_size(stack_b);
+		// printf("size du stack B : %d\n", size_b);
+		// printf("\nAFFICHAGE DE B\n");
+		// begin_b = *stack_b;
+		// while (begin_b)
+		// {
+		// 	printf("indice : %d\n", begin_b->index_sorted);
+		// 	printf("bloc : %d\n\n", begin_b->bloc);
+		// 	begin_b = begin_b->next;
+		// }
+		// printf("\nFIN DE L'AFFICHAGE DE B\n");
 		while (*stack_b)
 			ft_cut_bloc_10_to_5_in_b(stack_b, stack_a, &count);
 		// printf("\nAFFICHAGE DE A\n");
@@ -70,7 +70,6 @@ int	main(int argc, char **argv)
 		// }
 		// printf("\nsize A init : %d vs. size B fin : %d\n", size_a, size_b);
 	}
-	
 	printf("\nCOMPTEUR : %d\n\n\n", count);
 	return (0);
 }
