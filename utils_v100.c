@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:07:28 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/05 16:35:56 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:45:20 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -363,7 +363,10 @@ void	ft_sort_3_in_full_a(t_stack_list **stack_a, t_stack_list **stack_b, int *co
 			ft_swap_a(stack_a, count);
 	}
 	else if (taille == 3)
+	{	
+		printf("TAILLE : %d\n", taille);
 		ft_sort_3_in_a_100(stack_a, stack_b, count);
+	}
 }
 
 void	ft_sort_5_in_full_a(t_stack_list **stack_a, t_stack_list **stack_b, int *count)
@@ -410,11 +413,12 @@ void	ft_sort_5_in_full_a(t_stack_list **stack_a, t_stack_list **stack_b, int *co
 		ft_swap_b(stack_b, count);
 	printf("\nAAAPRES LE SWAP\n");
 	ft_sort_3_in_full_a(stack_a, stack_b, count);
+	printf("\nAAAPRES LE TRI DES 3\n");
 	if ((*stack_b) && (*stack_b)->bloc == working_bloc)
 		ft_push_b_to_a(stack_b, stack_a, count);
 	if ((*stack_b) && (*stack_b)->bloc == working_bloc)
 		ft_push_b_to_a(stack_b, stack_a, count);
-	printf("Valo en B : %d\n", (*stack_b)->index_sorted);
+	// printf("Valo en B : %d\n", (*stack_b)->index_sorted);
 }		
 
 void	ft_send_3_from_b_in_a_100(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int working_bloc)
