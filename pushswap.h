@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:28:19 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/04 18:26:36 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:12:08 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,12 @@ int			ft_distance_min_impair(t_stack_list **stack_a);
 int			ft_distance_min_pair(t_stack_list **stack_a);
 int			ft_distance_100(t_stack_list **stack_a, int *bool);
 void 		ft_send_a_to_b(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
-int			ft_get_max_in_bloc_10(int bloc);
+int			ft_get_max_in_bloc_10(t_stack_list **stack_b, int working_bloc);
 void		ft_cut_bloc_10_to_5_in_b(t_stack_list **stack_b, t_stack_list **stack_a, int *count);
 void		ft_sort_3_in_a_100(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
 void		ft_sort_3_in_full_a(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
 void		ft_sort_5_in_full_a(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
-void		ft_send_3_from_b_in_a_100(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
+void		ft_send_3_from_b_in_a_100(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int working_bloc);
 void		ft_sort_5_in_full_b(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
 
 

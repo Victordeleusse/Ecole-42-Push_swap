@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:07:28 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/04 18:49:21 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:35:56 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ int	ft_distance_min_pair(t_stack_list **stack_a)
 	bloc_pair = 2;
 	while (ft_is_bloc_present(stack_a, bloc_pair) == 0 && bloc_pair < 11)
 		bloc_pair = bloc_pair + 2;
-	printf("Bloc pair : %d\n", bloc_pair);
 	if (bloc_pair == 12)
 		return (-1);
 	dist_begin_pair = 0;
@@ -144,11 +143,8 @@ int	ft_distance_100(t_stack_list **stack_a, int *bool)
 	int	size_stack;
 	
 	size_stack = ft_get_stack_size(stack_a);
-	printf("\nSize du stack : %d\n", size_stack);
 	dist_min_impair = ft_distance_min_impair(stack_a);
-	printf("\ndist min impair : %d\n", dist_min_impair);
 	dist_min_pair = ft_distance_min_pair(stack_a);
-	printf("\ndist min pair : %d\n", dist_min_pair);
 	if (dist_min_pair == -1)
 		dist_min_pair = 200;
 	if (dist_min_impair == -1)
@@ -176,7 +172,6 @@ void ft_send_a_to_b(t_stack_list **stack_a, t_stack_list **stack_b, int *count)
 
 	bool = 0;
 	distance = ft_distance_100(stack_a, &bool);
-	printf("DISTANCE %d\n", distance);
 	size_stack = ft_get_stack_size(stack_a);
 	mid_stack = size_stack / 2;
 	if (distance > mid_stack)
@@ -187,7 +182,6 @@ void ft_send_a_to_b(t_stack_list **stack_a, t_stack_list **stack_b, int *count)
 			ft_reverse_rotate_a(stack_a, count);
 			nb_operation--;
 		}
-		printf("DATA ENVOYEE : %d\n", (*stack_a)->data);
 		ft_push_a_to_b(stack_a, stack_b, count);
 		if (bool == 2)
 			ft_rotate_b(stack_b, count);
@@ -199,57 +193,56 @@ void ft_send_a_to_b(t_stack_list **stack_a, t_stack_list **stack_b, int *count)
 			ft_rotate_a(stack_a, count);
 			distance--;
 		}
-		printf("DATA ENVOYEE : %d\n", (*stack_a)->data);
 		ft_push_a_to_b(stack_a, stack_b, count);
 		if (bool == 2)
 			ft_rotate_b(stack_b, count);
 	}
 }
 
-int	ft_get_max_in_bloc_10(int bloc)
+int	ft_get_max_in_bloc_10(t_stack_list **stack, int working_bloc)
 {
-	if (bloc == 1)
-		return (60);
-	if (bloc == 3)
-		return (70);
-	if (bloc == 5)
-		return (80);
-	if (bloc == 7)
-		return (90);
-	if (bloc == 9)
-		return (100);
-	if (bloc == 2)
-		return (50);
-	if (bloc == 4)
-		return (40);
-	if (bloc == 6)
-		return (30);
-	if (bloc == 8)
-		return (20);
-	if (bloc == 10)
-		return (10);
-	return(0);
+	t_stack_list	*begin;
+	int				index_max;
+
+	begin = *stack;
+	index_max = begin->index_sorted;
+	// printf("INDICE MAX DE LA PILE : %d\n", index_max);
+	while (begin && begin->bloc == working_bloc)
+	{
+		if (begin->index_sorted > index_max)
+			index_max = begin->index_sorted;
+		begin = begin->next;
+	}
+	return(index_max);
 }
 
 void	ft_cut_bloc_10_to_5_in_b(t_stack_list **stack_b, t_stack_list **stack_a, int *count)
 {
 	t_stack_list	*begin_b;
+	t_stack_list	*begin_a;
 	int				working_bloc;
 	int				max_bloc;
 	int				nb_rotate;
+	int				nb_already_pushed;
 	
+	nb_already_pushed = 0;
 	working_bloc = (*stack_b)->bloc;
-	max_bloc = ft_get_max_in_bloc_10(working_bloc);
+	max_bloc = ft_get_max_in_bloc_10(stack_b, working_bloc);
+	printf("MAX BLOC : %d\n", max_bloc);
 	begin_b = *stack_b;
 	nb_rotate = 0;
-	while (begin_b->bloc == working_bloc)
+	while (begin_b && begin_b->bloc == working_bloc && nb_already_pushed < 5)
 	{
 		if (begin_b->index_sorted > (max_bloc - 5))
+		{
+			printf("Nombre PUSH: %d\n", (*stack_b)->index_sorted);
 			ft_push_b_to_a(stack_b, stack_a, count);
+			nb_already_pushed++;
+			printf("nombre de push : %d\n", nb_already_pushed);
+		}
 		else
 		{
 			ft_rotate_b(stack_b, count);
-			printf("\nROTATE\n");
 			nb_rotate++;
 		}	
 		begin_b = *stack_b;
@@ -259,8 +252,47 @@ void	ft_cut_bloc_10_to_5_in_b(t_stack_list **stack_b, t_stack_list **stack_a, in
 		ft_reverse_rotate_b(stack_b, count);	
 		nb_rotate--;
 	}
+	printf("\nAPRES SEPARATION\n");
+	printf("\nAFFICHAGE DE B\n");
+	begin_b = *stack_b;
+	while (begin_b)
+	{
+		printf("Indice au top de stack_b : %d -> bloc : %d\n", begin_b->index_sorted, begin_b->bloc);
+		begin_b = begin_b->next;
+	}
+	printf("\nAFFICHAGE DE A\n");
+	begin_a = *stack_a;
+	while (begin_a)
+	{
+		printf("Indice au top de stack_a : %d -> bloc : %d\n", begin_a->index_sorted, begin_a->bloc);
+		begin_a = begin_a->next;
+	}
 	ft_sort_5_in_full_a(stack_a, stack_b, count);
-	ft_sort_5_in_full_b(stack_a, stack_b, count);
+	printf("\nAFFICHAGE DE A\n");
+	begin_a = *stack_a;
+	while (begin_a && begin_a->bloc == working_bloc)
+	{
+		printf("Indice de stack_a : %d\n", begin_a->index_sorted);
+		begin_a = begin_a->next;
+	}
+	if ((*stack_b))
+		ft_sort_5_in_full_b(stack_a, stack_b, count);
+	printf("\nAFFICHAGE DE A\n");
+	begin_a = *stack_a;
+	while (begin_a)
+	{
+		printf("Indice de stack_a : %d\n", begin_a->index_sorted);
+		printf("bloc : %d\n", begin_a->bloc);
+		begin_a = begin_a->next;
+	}
+	printf("\nAFFICHAGE DE B\n");
+	begin_b = *stack_b;
+	while (begin_b)
+	{
+		printf("Indice de stack_b : %d\n", begin_b->index_sorted);
+		printf("bloc : %d\n", begin_b->bloc);
+		begin_b = begin_b->next;
+	}
 }
 
 void	ft_sort_3_in_a_100(t_stack_list **stack_a, t_stack_list **stack_b, int *count)
@@ -313,12 +345,10 @@ void	ft_sort_3_in_full_a(t_stack_list **stack_a, t_stack_list **stack_b, int *co
 	t_stack_list	*begin_a;
 	int				working_bloc;
 	int				taille;
-	int				pos_max;
 	
 	working_bloc = (*stack_a)->bloc;
 	begin_a = *stack_a;
 	taille = 0;
-	pos_max = 1;
 	while (begin_a && begin_a->bloc == working_bloc)
 	{
 		taille++;
@@ -328,6 +358,7 @@ void	ft_sort_3_in_full_a(t_stack_list **stack_a, t_stack_list **stack_b, int *co
 		return ;
 	else if (taille == 2)
 	{
+		begin_a = *stack_a;
 		if (begin_a->index_sorted > begin_a->next->index_sorted)
 			ft_swap_a(stack_a, count);
 	}
@@ -346,44 +377,76 @@ void	ft_sort_5_in_full_a(t_stack_list **stack_a, t_stack_list **stack_b, int *co
 	
 	i = 0;
 	working_bloc = (*stack_a)->bloc;
-	max_bloc = ft_get_max_in_bloc_10(working_bloc);
+	max_bloc = ft_get_max_in_bloc_10(stack_a, working_bloc);
+	printf("INDICE MAX EN A : %d\n", max_bloc);
 	nb_rotate = 0;
 	begin_a = *stack_a;
-	while (begin_a->bloc == working_bloc && i < 5)
+	printf("Taille de A : %d\n", ft_get_stack_size(stack_a));
+	if (ft_get_stack_size(stack_a) > 3)
 	{
-		if (begin_a->index_sorted < (max_bloc - 2))
-			ft_push_a_to_b(stack_a, stack_b, count);
-		else
+		while (begin_a->bloc == working_bloc && i < 5)
 		{
-			ft_rotate_a(stack_a, count);
-			nb_rotate++;
-		}	
-		begin_a = *stack_a;
-		i++;
-	}
-	while (nb_rotate != 0)
-	{
-		ft_reverse_rotate_a(stack_a, count);	
-		nb_rotate--;
+			if (begin_a->index_sorted < (max_bloc - 2))
+			{	
+				printf("Valo PUSHED : %d\n", (*stack_a)->index_sorted);
+				ft_push_a_to_b(stack_a, stack_b, count);
+			}
+			else
+			{
+				ft_rotate_a(stack_a, count);
+				nb_rotate++;
+			}	
+			begin_a = *stack_a;
+			i++;
+		}
+		while (nb_rotate != 0)
+		{
+			ft_reverse_rotate_a(stack_a, count);	
+			nb_rotate--;
+		}
 	}
 	begin_b = *stack_b;
-	if (begin_b->index_sorted < begin_b->next->index_sorted)
+	if (begin_b && begin_b->next && begin_b->index_sorted < begin_b->next->index_sorted)
 		ft_swap_b(stack_b, count);
+	printf("\nAAAPRES LE SWAP\n");
 	ft_sort_3_in_full_a(stack_a, stack_b, count);
-	if ((*stack_b)->bloc == working_bloc)
+	if ((*stack_b) && (*stack_b)->bloc == working_bloc)
 		ft_push_b_to_a(stack_b, stack_a, count);
-	if ((*stack_b)->bloc == working_bloc)
+	if ((*stack_b) && (*stack_b)->bloc == working_bloc)
 		ft_push_b_to_a(stack_b, stack_a, count);
+	printf("Valo en B : %d\n", (*stack_b)->index_sorted);
 }		
 
-void	ft_send_3_from_b_in_a_100(t_stack_list **stack_a, t_stack_list **stack_b, int *count)
+void	ft_send_3_from_b_in_a_100(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int working_bloc)
 {
 	int	index_a;
 	int	index_b;
 	int	index_c;
 	
+	if (!*stack_b || (*stack_b)->bloc != working_bloc) 
+		return ;
 	index_a = (*stack_b)->index_sorted;
+	if (!(*stack_b)->next || (*stack_b)->next->bloc != working_bloc)
+	{	
+		ft_push_b_to_a(stack_b, stack_a, count);
+		return ;
+	}
 	index_b = (*stack_b)->next->index_sorted;
+	if (!(*stack_b)->next->next || (*stack_b)->next->next->bloc != working_bloc)
+	{
+		if (index_a > index_b)
+		{
+			ft_push_b_to_a(stack_b, stack_a, count);
+			ft_push_b_to_a(stack_b, stack_a, count);
+		}
+		else
+		{
+			ft_swap_b(stack_b, count);
+			ft_push_b_to_a(stack_b, stack_a, count);
+			ft_push_b_to_a(stack_b, stack_a, count);
+		}
+		return ;
+	}
 	index_c = (*stack_b)->next->next->index_sorted;
 	if (index_a > index_b && index_b > index_c && index_a > index_c)
 	{	
@@ -449,30 +512,34 @@ void	ft_sort_5_in_full_b(t_stack_list **stack_a, t_stack_list **stack_b, int *co
 	
 	i = 0;
 	working_bloc = (*stack_b)->bloc;
-	max_bloc = ft_get_max_in_bloc_10(working_bloc);
-	printf("MAX in B : %d\n", max_bloc);
+	max_bloc = ft_get_max_in_bloc_10(stack_b, working_bloc);
+	printf("\nMAX BLOC : %d & WORKING BLOC : %d\n", max_bloc, working_bloc);
 	nb_rotate = 0;
 	begin_b = *stack_b;
-	printf("Valo de depart : %d\n", begin_b->index_sorted);
-	while (begin_b->bloc == working_bloc && i < 5)
+	printf("Depart : %d\n", begin_b->index_sorted);
+	if (ft_get_stack_size(stack_b) > 3)
 	{
-		if (begin_b->index_sorted > (max_bloc - 7))
-			ft_push_b_to_a(stack_b, stack_a, count);
-		else
+		while (begin_b->bloc == working_bloc && i < 5)
 		{
-			ft_rotate_b(stack_b, count);
-			nb_rotate++;
-		}	
-		begin_b = *stack_b;
-		i++;
-	}
-	while (nb_rotate != 0)
-	{
-		ft_reverse_rotate_b(stack_b, count);	
-		nb_rotate--;
+			
+			if (begin_b->index_sorted > (max_bloc - 2))
+				ft_push_b_to_a(stack_b, stack_a, count);
+			else
+			{
+				ft_rotate_b(stack_b, count);
+				nb_rotate++;
+			}	
+			begin_b = *stack_b;
+			i++;
+		}
+		while (nb_rotate != 0)
+		{
+			ft_reverse_rotate_b(stack_b, count);	
+			nb_rotate--;
+		}
 	}
 	begin_a = *stack_a;
 	if (begin_a->index_sorted > begin_a->next->index_sorted)
 		ft_swap_a(stack_a, count);
-	ft_send_3_from_b_in_a_100(stack_a, stack_b, count);
+	ft_send_3_from_b_in_a_100(stack_a, stack_b, count, working_bloc);
 }
