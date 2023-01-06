@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:15:27 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/05 17:08:41 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:01:19 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,35 +41,19 @@ int	main(int argc, char **argv)
 	else if (argc - 1 <= 100)
 	{
 		ft_init_bloc(stack_a, argc - 1);
-		// printf("\nFIRST STEP\n");
-		// size_a = ft_get_stack_size(stack_a);
-		// printf("size du stack A : %d\n", size_a);
 		while ((*stack_a))
 			ft_send_a_to_b(stack_a, stack_b, &count);
-		// size_b = ft_get_stack_size(stack_b);
-		// printf("size du stack B : %d\n", size_b);
-		// printf("\nAFFICHAGE DE B\n");
-		// begin_b = *stack_b;
-		// while (begin_b)
-		// {
-		// 	printf("indice : %d\n", begin_b->index_sorted);
-		// 	printf("bloc : %d\n\n", begin_b->bloc);
-		// 	begin_b = begin_b->next;
-		// }
-		// printf("\nFIN DE L'AFFICHAGE DE B\n");
 		while (*stack_b)
 			ft_cut_bloc_10_to_5_in_b(stack_b, stack_a, &count);
-		// printf("\nAFFICHAGE DE A\n");
-		// begin_a = *stack_a;
-		// while (begin_a)
-		// {
-		// 	printf("data : %d\n", begin_a->data);
-		// 	// printf("indice : %d\n", begin_a->index_sorted);
-		// 	// printf("bloc : %d\n\n", begin_a->bloc);
-		// 	begin_a = begin_a->next;
-		// }
-		// printf("\nsize A init : %d vs. size B fin : %d\n", size_a, size_b);
 	}
-	printf("\nCOMPTEUR : %d\n\n\n", count);
+	else if (argc - 1 <= 500)
+	{
+		ft_init_bloc_500(stack_a, argc - 1);
+		while ((*stack_a))
+			ft_send_a_to_b_500(stack_a, stack_b, &count);
+		while (*stack_b)
+		 	ft_cut_bloc_10_to_5_in_b_500(stack_b, stack_a, &count);
+	}
+	// printf("\nCOMPTEUR : %d\n\n\n", count);
 	return (0);
 }

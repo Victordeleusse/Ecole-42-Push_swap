@@ -1,6 +1,6 @@
 SRCS = main.c ps_lecture/lecture.c ps_lecture/error.c \
 		ps_operations/swap_push.c ps_operations/rotate_reverse.c ps_operations/operation.c ps_operations/tri_a_bulle.c \
-		utils_v0.c utils_v3.c utils_v5.c utils_v10.c utils_v100.c 
+		utils_v0.c utils_v3.c utils_v5.c utils_v10.c utils_v100.c utils_v500.c 
 OBJS = ${SRCS:.c=.o}
 DEPS = ${SRCS:.c=.d}
 
@@ -14,7 +14,7 @@ CFLAGS += -Werror
 CFLAGS += -Wextra
 
 # CFLAGS += -fsanitize=address,undefined -g2
-# CFLAGS += -valgrind
+# CFLAGS += -valgrind 
 
 %.o: %.c fdf.h
 			${CC} -I. ${LIBFT_PATH} -MMD -c $< -o ${<:.c=.o}

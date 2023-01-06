@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:28:19 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/05 14:12:08 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/06 14:23:26 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,20 @@ void		ft_sort_5_in_full_a(t_stack_list **stack_a, t_stack_list **stack_b, int *c
 void		ft_send_3_from_b_in_a_100(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int working_bloc);
 void		ft_sort_5_in_full_b(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
 
+/////////////////////////////// UTILS_v500.C////////////////////////////////
+
+void		ft_init_bloc_500(t_stack_list **stack_a, int size_init);
+int			ft_is_bloc_present_500(t_stack_list **stack_a, int bloc_searched);
+int			ft_distance_min_impair_500(t_stack_list **stack_a);
+int			ft_distance_min_pair_500(t_stack_list **stack_a);
+int			ft_distance_500(t_stack_list **stack_a, int *bool);
+void		ft_send_a_to_b_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
+int			ft_get_max_in_bloc_10_500(t_stack_list **stack, int working_bloc);
+void		ft_cut_bloc_10_to_5_in_b_500(t_stack_list **stack_b, t_stack_list **stack_a, int *count);
+void		ft_sort_3_in_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
+void		ft_sort_3_in_full_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
+void		ft_sort_5_in_full_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
+void		ft_send_3_from_b_in_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int working_bloc);
+void		ft_sort_5_in_full_b_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
 
 #endif
