@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:28:19 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/08 15:37:16 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:06:27 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,22 @@ int				ft_get_mediane_position(t_stack_list **stack);
 /////////////////////////////// UTILS_v3.C////////////////////////////////	
 
 int				ft_get_pos_min(t_stack_list **stack_a);
-void			ft_case_beginning(t_stack_list **stack_a, int *count);
-void			ft_case_end(t_stack_list **stack_a, int *count, int size_stack_a);
-void			ft_case_middle(t_stack_list **stack_a, int *count, int size_stack_a);
-void			ft_sort_3(t_stack_list **stack_a, int *count, int size_stack_a);
+void			ft_case_beginning(t_stack_list **stack_a, int *count, t_instruction_list **instruction_list);
+void			ft_case_end(t_stack_list **stack_a, int *count, int size_stack_a, t_instruction_list **instruction_list);
+void			ft_case_middle(t_stack_list **stack_a, int *count, int size_stack_a, t_instruction_list **instruction_list);
+void			ft_sort_3(t_stack_list **stack_a, int *count, int size_stack_a, t_instruction_list **instruction_list);
 
 /////////////////////////////// UTILS_v5.C////////////////////////////////
 
 int				ft_already_sort_5(t_stack_list **stack);
 int				ft_get_distance(t_stack_list **stack, int mediane_index);
 void			ft_prepare_stack_4(t_stack_list **stack1, \
-					t_stack_list **stack2, int *count, int mediane_index);
+					t_stack_list **stack2, int *count, int mediane_index, t_instruction_list **instruction_list);
 void			ft_prepare_stack_3(t_stack_list **stack1, \
-					t_stack_list **stack2, int *count, int mediane_index);
-void	ft_prepare_stack_3_bis(t_stack_list **stack1, t_stack_list **stack2, \
-					int *count, int mediane_index);
-void			ft_sort_5(t_stack_list **stack1, t_stack_list **stack2, int *count);
+					t_stack_list **stack2, int *count, int mediane_index, t_instruction_list **instruction_list);
+void			ft_prepare_stack_3_bis(t_stack_list **stack1, t_stack_list **stack2, \
+					int *count, int mediane_index, t_instruction_list **instruction_list);
+void			ft_sort_5(t_stack_list **stack1, t_stack_list **stack2, int *count, t_instruction_list **instruction_list);
 
 /////////////////////////////// UTILS_v10.C////////////////////////////////
 
@@ -86,14 +86,5 @@ int			ft_get_max_in_bloc_25(t_stack_list **stack, int working_bloc);
 void		ft_send_max_in_bloc_25_from_b_to_a(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int index_max);
 void		ft_send_max_from_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int working_bloc, int *count);
 void		ft_send_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
-
-
-int			ft_get_max_in_bloc_10_500(t_stack_list **stack, int working_bloc);
-void		ft_cut_bloc_10_to_5_in_b_500(t_stack_list **stack_b, t_stack_list **stack_a, int *count);
-void		ft_sort_3_in_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
-void		ft_sort_3_in_full_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
-void		ft_sort_5_in_full_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
-void		ft_send_3_from_b_in_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int working_bloc);
-void		ft_sort_5_in_full_b_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
 
 #endif

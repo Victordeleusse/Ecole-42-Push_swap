@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 18:48:16 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/03 14:20:23 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:08:14 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	ft_get_distance(t_stack_list **stack, int mediane_index)
 		return(distance_end);
 }
 
-void	ft_prepare_stack_4(t_stack_list **stack1, t_stack_list **stack2, int *count, int mediane_index)
+void	ft_prepare_stack_4(t_stack_list **stack1, t_stack_list **stack2, int *count, int mediane_index, t_instruction_list **instruction_list)
 {
 	int				distance;
 	t_stack_list	*begin1;
@@ -63,32 +63,32 @@ void	ft_prepare_stack_4(t_stack_list **stack1, t_stack_list **stack2, int *count
 	begin1 = *stack1;
 	distance = ft_get_distance(stack1, mediane_index);
 	if (distance == 0)
-		ft_push_a_to_b(stack1, stack2, count);
+		ft_push_a_to_b(stack1, stack2, count, instruction_list);
 	if (distance == 1)
 	{
-		ft_swap_a(stack1, count);
-		ft_push_a_to_b(stack1, stack2, count);
+		ft_swap_a(stack1, count, instruction_list);
+		ft_push_a_to_b(stack1, stack2, count, instruction_list);
 	}
 	if (distance == 2)
 	{
-		ft_rotate_a(stack1, count);
-		ft_rotate_a(stack1, count);
-		ft_push_a_to_b(stack1, stack2, count);
+		ft_rotate_a(stack1, count, instruction_list);
+		ft_rotate_a(stack1, count, instruction_list);
+		ft_push_a_to_b(stack1, stack2, count, instruction_list);
 	}
 	if (distance == 3)
 	{
-		ft_reverse_rotate_a(stack1, count);
-		ft_reverse_rotate_a(stack1, count);
-		ft_push_a_to_b(stack1, stack2, count);
+		ft_reverse_rotate_a(stack1, count, instruction_list);
+		ft_reverse_rotate_a(stack1, count, instruction_list);
+		ft_push_a_to_b(stack1, stack2, count, instruction_list);
 	}
 	if (distance == 4)
 	{
-		ft_reverse_rotate_a(stack1, count);
-		ft_push_a_to_b(stack1, stack2, count);
+		ft_reverse_rotate_a(stack1, count, instruction_list);
+		ft_push_a_to_b(stack1, stack2, count, instruction_list);
 	}	
 }
 
-void	ft_prepare_stack_3(t_stack_list **stack1, t_stack_list **stack2, int *count, int mediane_index)
+void	ft_prepare_stack_3(t_stack_list **stack1, t_stack_list **stack2, int *count, int mediane_index, t_instruction_list **instruction_list)
 {
 	int				distance;
 	t_stack_list	*begin1;
@@ -96,26 +96,26 @@ void	ft_prepare_stack_3(t_stack_list **stack1, t_stack_list **stack2, int *count
 	begin1 = *stack1;
 	distance = ft_get_distance(stack1, mediane_index);
 	if (distance == 0)
-		ft_push_a_to_b(stack1, stack2, count);
+		ft_push_a_to_b(stack1, stack2, count, instruction_list);
 	if (distance == 1)
 	{
-		ft_swap_a(stack1, count);
-		ft_push_a_to_b(stack1, stack2, count);
+		ft_swap_a(stack1, count, instruction_list);
+		ft_push_a_to_b(stack1, stack2, count, instruction_list);
 	}
 	if (distance == 2)
 	{
-		ft_rotate_a(stack1, count);
-		ft_rotate_a(stack1, count);
-		ft_push_a_to_b(stack1, stack2, count);
+		ft_rotate_a(stack1, count, instruction_list);
+		ft_rotate_a(stack1, count, instruction_list);
+		ft_push_a_to_b(stack1, stack2, count, instruction_list);
 	}
 	if (distance == 3)
 	{
-		ft_reverse_rotate_a(stack1, count);
-		ft_push_a_to_b(stack1, stack2, count);
+		ft_reverse_rotate_a(stack1, count, instruction_list);
+		ft_push_a_to_b(stack1, stack2, count, instruction_list);
 	}
 }
 
-void	ft_prepare_stack_3_bis(t_stack_list **stack1, t_stack_list **stack2, int *count, int mediane_index)
+void	ft_prepare_stack_3_bis(t_stack_list **stack1, t_stack_list **stack2, int *count, int mediane_index, t_instruction_list **instruction_list)
 {
 	int	distance;
 	t_stack_list	*begin1;
@@ -124,26 +124,26 @@ void	ft_prepare_stack_3_bis(t_stack_list **stack1, t_stack_list **stack2, int *c
 	mediane_index = ft_get_mediane_index(stack1);
 	distance = ft_get_distance(stack1, mediane_index);
 	if (distance == 0)
-		ft_push_a_to_b(stack1, stack2, count);
+		ft_push_a_to_b(stack1, stack2, count, instruction_list);
 	if (distance == 1)
 	{
-		ft_swap_a(stack1, count);
-		ft_push_a_to_b(stack1, stack2, count);
+		ft_swap_a(stack1, count, instruction_list);
+		ft_push_a_to_b(stack1, stack2, count, instruction_list);
 	}
 	if (distance == 2)
 	{
-		ft_rotate_a(stack1, count);
-		ft_rotate_a(stack1, count);
-		ft_push_a_to_b(stack1, stack2, count);
+		ft_rotate_a(stack1, count, instruction_list);
+		ft_rotate_a(stack1, count, instruction_list);
+		ft_push_a_to_b(stack1, stack2, count, instruction_list);
 	}
 	if (distance == 3)
 	{
-		ft_reverse_rotate_a(stack1, count);
-		ft_push_a_to_b(stack1, stack2, count);
+		ft_reverse_rotate_a(stack1, count, instruction_list);
+		ft_push_a_to_b(stack1, stack2, count, instruction_list);
 	}
 }
 
-void	ft_sort_5(t_stack_list **stack1, t_stack_list **stack2, int *count)
+void	ft_sort_5(t_stack_list **stack1, t_stack_list **stack2, int *count, t_instruction_list **instruction_list)
 {
 	t_stack_list	*begin1;
 	t_stack_list	*begin2;
@@ -157,13 +157,13 @@ void	ft_sort_5(t_stack_list **stack1, t_stack_list **stack2, int *count)
 	mediane_index = ft_get_mediane_index(stack1);
 	if (size_stack1 == 5)
 	{
-		ft_prepare_stack_4(stack1, stack2, count, mediane_index);
-		ft_prepare_stack_3(stack1, stack2, count, mediane_index);
+		ft_prepare_stack_4(stack1, stack2, count, mediane_index, instruction_list);
+		ft_prepare_stack_3(stack1, stack2, count, mediane_index, instruction_list);
 		size_stack1 = size_stack1 - 2;
 	}
 	else if (size_stack1 == 4)
 	{
-		ft_prepare_stack_3_bis(stack1, stack2, count, mediane_index);
+		ft_prepare_stack_3_bis(stack1, stack2, count, mediane_index, instruction_list);
 		size_stack1 = size_stack1 - 1;
 	}
 	begin1 = *stack1;
@@ -171,13 +171,13 @@ void	ft_sort_5(t_stack_list **stack1, t_stack_list **stack2, int *count)
 	{
 		begin1 = begin1->next;
 	}
-	ft_sort_3(stack1, count, size_stack1);
+	ft_sort_3(stack1, count, size_stack1, instruction_list);
 	if (*stack2 && (*stack2)->next)
 	{
 		begin2 = *stack2;
 		if (begin2->index_sorted < begin2->next->index_sorted)
-			ft_swap_b(stack2, count);
+			ft_swap_b(stack2, count, instruction_list);
 	}	
-	ft_push_b_to_a(stack2, stack1, count);
-	ft_push_b_to_a(stack2, stack1, count);
+	ft_push_b_to_a(stack2, stack1, count, instruction_list);
+	ft_push_b_to_a(stack2, stack1, count, instruction_list);
 }

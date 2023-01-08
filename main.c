@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:15:27 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/08 16:17:22 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:13:37 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int	main(int argc, char **argv)
 {
-	int				*tab;
-	t_stack_list	**stack_a;
-	t_stack_list	**stack_b;
+	int					*tab;
+	t_stack_list		**stack_a;
+	t_stack_list		**stack_b;
+	t_instruction_list	*instruction_list;
+	t_instruction_list	*begin_list;
 	// t_stack_list	*begin_a;
 	// t_stack_list	*begin_b;
-	int				count;
+	int					count;
 	// int				size_a;
 	// int				size_b;
 
@@ -30,12 +32,21 @@ int	main(int argc, char **argv)
 	stack_a = ft_generate_full_stack(tab, argc);
 	stack_b = ft_generate_empty_stack(argc);
 	ft_get_index_sorted(stack_a, tab, argc);
+	instruction_list = ft_generate_instruction_element("start");
+	begin_list = instruction_list;
 	if (argc - 1 <= 5)
-		ft_sort_5(stack_a, stack_b, &count);
+	{	
+		ft_sort_5(stack_a, stack_b, &count, &instruction_list);
+		while(begin_list)
+		{
+			printf("data : %s\n", begin_list->instruction);
+			begin_list = begin_list->next;
+		}
+	}
 	else if (argc - 1 <= 10)
 	{
 		ft_separate_stack(stack_a, stack_b, &count, argc - 1);
-		ft_sort_5(stack_a, stack_b, &count);
+		ft_sort_5(stack_a, stack_b, &count, &instruction_list);
 		ft_restore_b_to_a(stack_b, stack_a, &count);
 	}
 	else if (argc - 1 <= 100)
