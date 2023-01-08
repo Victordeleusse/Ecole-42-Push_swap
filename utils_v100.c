@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 15:07:28 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/08 13:49:29 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/08 13:57:21 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,39 +172,6 @@ int	ft_distance_100(t_stack_list **stack_a, int *bool)
 	}
 	return (dist_min);
 }
-
-// int	ft_distance_100(t_stack_list **stack_a, int *bool)
-// {
-// 	int	dist_min;
-// 	int	dist_min_pair;
-// 	int	dist_min_impair;
-// 	int	size_stack;
-	
-// 	dist_min = 0;
-// 	size_stack = ft_get_stack_size(stack_a);
-// 	dist_min_impair = ft_distance_min_impair(stack_a);
-// 	dist_min_pair = ft_distance_min_pair(stack_a);
-// 	if (dist_min_pair == -1)
-// 		return (dist_min_impair);
-// 	if (dist_min_impair == -1)
-// 		return (dist_min_pair);
-// 	if (dist_min_pair <= dist_min_impair && dist_min_impair < size_stack / 2)
-// 	{
-// 		*bool = 2;
-// 		dist_min = dist_min_pair;
-// 	}
-// 	else if (dist_min_pair <= dist_min_impair && dist_min_pair < (size_stack - dist_min_impair))
-// 	{
-// 		*bool = 2;
-// 		dist_min = dist_min_pair;
-// 	}
-// 	else
-// 	{
-// 		*bool = 1;
-// 		dist_min = dist_min_impair;
-// 	}
-// 	return (dist_min);
-// }
 
 void ft_send_a_to_b(t_stack_list **stack_a, t_stack_list **stack_b, int *count)
 {

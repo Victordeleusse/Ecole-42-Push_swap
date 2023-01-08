@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:20:18 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/08 11:06:46 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:15:23 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_rotate_a(t_stack_list **stack_a, int *count)
 	extract = ft_pop_first(stack_a);
 	ft_add_last(stack_a, extract);
 	(*count)++;
-	// ft_printf("ra\n");
+	ft_printf("ra\n");
 }
 
 void	ft_rotate_b(t_stack_list **stack_b, int *count)
@@ -37,7 +37,7 @@ void	ft_rotate_b(t_stack_list **stack_b, int *count)
 	extract = ft_pop_first(stack_b);
 	ft_add_last(stack_b, extract);
 	(*count)++;
-	// ft_printf("rb\n");
+	ft_printf("rb\n");
 }
 
 void	ft_double_rotate(t_stack_list **stack_a, t_stack_list **stack_b, \
@@ -45,7 +45,7 @@ void	ft_double_rotate(t_stack_list **stack_a, t_stack_list **stack_b, \
 {
 	ft_rotate_a(stack_a, count);
 	ft_rotate_b(stack_b, count);
-	// ft_printf("rr\n");
+	ft_printf("rr\n");
 	count--;
 }
 
@@ -60,7 +60,7 @@ void	ft_reverse_rotate_a(t_stack_list **stack_a, int *count)
 	extract = ft_pop_last(stack_a);
 	ft_add_first(stack_a, extract);
 	(*count)++;
-	// ft_printf("rra\n");
+	ft_printf("rra\n");
 }
 
 void	ft_reverse_rotate_b(t_stack_list **stack_b, int *count)
@@ -72,7 +72,7 @@ void	ft_reverse_rotate_b(t_stack_list **stack_b, int *count)
 	extract = ft_pop_last(stack_b);
 	ft_add_first(stack_b, extract);
 	(*count)++;
-	// ft_printf("rrb\n");
+	ft_printf("rrb\n");
 }
 
 void	ft_double_reverse_rotate(t_stack_list **stack_a, \
@@ -80,6 +80,6 @@ void	ft_double_reverse_rotate(t_stack_list **stack_a, \
 {
 	ft_reverse_rotate_a(stack_a, count);
 	ft_reverse_rotate_b(stack_b, count);
-	// ft_printf("rrr\n");
+	ft_printf("rrr\n");
 	count--;
 }

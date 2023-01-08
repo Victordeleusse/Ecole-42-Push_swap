@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:28:19 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/08 11:46:52 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:37:16 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,12 @@ int			ft_distance_min_impair_500(t_stack_list **stack_a);
 int			ft_distance_min_pair_500(t_stack_list **stack_a);
 int			ft_distance_500(t_stack_list **stack_a, int *bool);
 void		ft_send_a_to_b_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
+int			ft_get_max_in_bloc_25(t_stack_list **stack, int working_bloc);
+void		ft_send_max_in_bloc_25_from_b_to_a(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int index_max);
+void		ft_send_max_from_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int working_bloc, int *count);
+void		ft_send_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
+
+
 int			ft_get_max_in_bloc_10_500(t_stack_list **stack, int working_bloc);
 void		ft_cut_bloc_10_to_5_in_b_500(t_stack_list **stack_b, t_stack_list **stack_a, int *count);
 void		ft_sort_3_in_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);

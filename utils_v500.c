@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:41:13 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/08 13:49:01 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:13:57 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,299 +220,83 @@ void ft_send_a_to_b_500(t_stack_list **stack_a, t_stack_list **stack_b, int *cou
 	}
 }
 
+int	ft_get_max_in_bloc_25(t_stack_list **stack, int working_bloc)
+{
+	t_stack_list	*begin;
+	int				index_max;
 
+	begin = *stack;
+	index_max = 0;
+	while (begin)
+	{
+		if (begin->index_sorted > index_max && begin->bloc == working_bloc)
+			index_max = begin->index_sorted;
+		begin = begin->next;
+	}
+	return(index_max);
+}
 
-// int	ft_get_max_in_bloc_10_500(t_stack_list **stack, int working_bloc)
-// {
-// 	t_stack_list	*begin;
-// 	int				index_max;
+void	ft_send_max_in_bloc_25_from_b_to_a(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int index_max)
+{
+	t_stack_list	*begin_b;
+	int				size_stack;
+	int				distance;
 
-// 	begin = *stack;
-// 	index_max = begin->index_sorted;
-// 	while (begin && begin->bloc == working_bloc)
-// 	{
-// 		if (begin->index_sorted > index_max)
-// 			index_max = begin->index_sorted;
-// 		begin = begin->next;
-// 	}
-// 	return(index_max);
-// }
+	size_stack = ft_get_stack_size(stack_b);
+	distance = 0;
+	begin_b = *stack_b;
+	while (begin_b && begin_b->index_sorted != index_max)
+	{
+		distance++;
+		begin_b = begin_b->next;
+	}
+	if (distance <= 12 || (distance > 12 && distance < 25 && size_stack > 25))
+	{
+		while (distance)
+		{
+			ft_rotate_b(stack_b, count);
+			distance--;
+		}
+		ft_push_b_to_a(stack_b, stack_a, count);
+	}
+	else if ((distance > 12 && distance < 25 && size_stack <= 25) || distance >= 25)
+	{
+		distance = size_stack - distance;
+		while (distance)
+		{
+			ft_reverse_rotate_b(stack_b, count);
+			distance--;
+		}
+		ft_push_b_to_a(stack_b, stack_a, count);
+	}
+}
 
-// void	ft_cut_bloc_10_to_5_in_b_500(t_stack_list **stack_b, t_stack_list **stack_a, int *count)
-// {
-// 	t_stack_list	*begin_b;
-// 	t_stack_list	*begin_a;
-// 	int				working_bloc;
-// 	int				max_bloc;
-// 	int				nb_rotate;
-// 	int				nb_already_pushed;
-	
-// 	nb_already_pushed = 0;
-// 	working_bloc = (*stack_b)->bloc;
-// 	max_bloc = ft_get_max_in_bloc_10_500(stack_b, working_bloc);
-// 	begin_b = *stack_b;
-// 	nb_rotate = 0;
-// 	while (begin_b && begin_b->bloc == working_bloc && nb_already_pushed < 5)
-// 	{
-// 		if (begin_b->index_sorted > (max_bloc - 5))
-// 		{
-// 			ft_push_b_to_a(stack_b, stack_a, count);
-// 			nb_already_pushed++;
-// 		}
-// 		else
-// 		{
-// 			ft_rotate_b(stack_b, count);
-// 			nb_rotate++;
-// 		}	
-// 		begin_b = *stack_b;
-// 	}
-// 	while (nb_rotate != 0)
-// 	{
-// 		ft_reverse_rotate_b(stack_b, count);	
-// 		nb_rotate--;
-// 	}
-// 	ft_sort_5_in_full_a_500(stack_a, stack_b, count);
-// 	begin_a = *stack_a;
-// 	if ((*stack_b) && (*stack_b)->bloc == working_bloc)
-// 		ft_sort_5_in_full_b_500(stack_a, stack_b, count);
-// }
+void	ft_send_max_from_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int working_bloc, int *count)
+{
+	int index_max;
 
-// void	ft_sort_3_in_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count)
-// {
-// 	int	index_a;
-// 	int	index_b;
-// 	int	index_c;
-	
-// 	index_a = (*stack_a)->index_sorted;
-// 	index_b = (*stack_a)->next->index_sorted;
-// 	index_c = (*stack_a)->next->next->index_sorted;
-// 	if (index_a < index_b && index_b < index_c && index_a < index_c)
-// 		return ;
-// 	else if (index_a < index_b && index_b > index_c && index_a < index_c)
-// 	{
-// 		ft_push_a_to_b(stack_a, stack_b, count);
-// 		ft_swap_a(stack_a, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 	}
-// 	else if (index_a < index_b && index_b > index_c && index_a > index_c)
-// 	{
-// 		ft_push_a_to_b(stack_a, stack_b, count);
-// 		ft_swap_a(stack_a, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_swap_a(stack_a, count);
-// 	}
-// 	else if (index_a > index_b && index_b < index_c && index_a < index_c)
-// 		ft_swap_a(stack_a, count);
-// 	else if (index_a > index_b && index_b < index_c && index_a > index_c)
-// 	{
-// 		ft_swap_a(stack_a, count);
-// 		ft_push_a_to_b(stack_a, stack_b, count);
-// 		ft_swap_a(stack_a, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 	}
-// 	else if (index_a > index_b && index_b > index_c && index_a > index_c)
-// 	{
-// 		ft_push_a_to_b(stack_a, stack_b, count);
-// 		ft_swap_a(stack_a, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_swap_a(stack_a, count);
-// 		ft_push_a_to_b(stack_a, stack_b, count);
-// 		ft_swap_a(stack_a, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 	}
-// }
+	index_max = ft_get_max_in_bloc_25(stack_b, working_bloc);
+	ft_send_max_in_bloc_25_from_b_to_a(stack_a, stack_b, count, index_max);
+}
 
-// void	ft_sort_3_in_full_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count)
-// {
-// 	t_stack_list	*begin_a;
-// 	int				working_bloc;
-// 	int				taille;
-	
-// 	working_bloc = (*stack_a)->bloc;
-// 	begin_a = *stack_a;
-// 	taille = 0;
-// 	while (begin_a && begin_a->bloc == working_bloc)
-// 	{
-// 		taille++;
-// 		begin_a = begin_a->next;
-// 	}
-// 	if (taille == 0 || taille == 1)
-// 		return ;
-// 	else if (taille == 2)
-// 	{
-// 		begin_a = *stack_a;
-// 		if (begin_a->index_sorted > begin_a->next->index_sorted)
-// 			ft_swap_a(stack_a, count);
-// 	}
-// 	else if (taille == 3)
-// 		ft_sort_3_in_a_500(stack_a, stack_b, count);
-// }
+void	ft_send_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count)
+{
+	int	working_bloc;
 
-// void	ft_sort_5_in_full_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count)
-// {
-// 	t_stack_list	*begin_a;
-// 	t_stack_list	*begin_b;
-// 	int				working_bloc;
-// 	int				max_bloc;
-// 	int				nb_rotate;
-// 	int				i;
-	
-// 	i = 0;
-// 	working_bloc = (*stack_a)->bloc;
-// 	max_bloc = ft_get_max_in_bloc_10_500(stack_a, working_bloc);
-// 	nb_rotate = 0;
-// 	begin_a = *stack_a;
-// 	if (ft_get_stack_size(stack_a) > 3)
-// 	{
-// 		while (begin_a->bloc == working_bloc && i < 5)
-// 		{
-// 			if (begin_a->index_sorted < (max_bloc - 2))
-// 				ft_push_a_to_b(stack_a, stack_b, count);
-// 			else
-// 			{
-// 				ft_rotate_a(stack_a, count);
-// 				nb_rotate++;
-// 			}	
-// 			begin_a = *stack_a;
-// 			i++;
-// 		}
-// 		while (nb_rotate != 0)
-// 		{
-// 			ft_reverse_rotate_a(stack_a, count);	
-// 			nb_rotate--;
-// 		}
-// 	}
-// 	begin_b = *stack_b;
-// 	if (begin_b && begin_b->next && begin_b->index_sorted < begin_b->next->index_sorted)
-// 		ft_swap_b(stack_b, count);
-// 	ft_sort_3_in_full_a_500(stack_a, stack_b, count);
-// 	if ((*stack_b) && (*stack_b)->bloc == working_bloc)
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 	if ((*stack_b) && (*stack_b)->bloc == working_bloc)
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// }
-
-// void	ft_send_3_from_b_in_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int working_bloc)
-// {
-// 	int	index_a;
-// 	int	index_b;
-// 	int	index_c;
-	
-// 	if (!*stack_b || (*stack_b)->bloc != working_bloc) 
-// 		return ;
-// 	index_a = (*stack_b)->index_sorted;
-// 	if (!(*stack_b)->next || (*stack_b)->next->bloc != working_bloc)
-// 	{	
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		return ;
-// 	}
-// 	index_b = (*stack_b)->next->index_sorted;
-// 	if (!(*stack_b)->next->next || (*stack_b)->next->next->bloc != working_bloc)
-// 	{
-// 		if (index_a > index_b)
-// 		{
-// 			ft_push_b_to_a(stack_b, stack_a, count);
-// 			ft_push_b_to_a(stack_b, stack_a, count);
-// 		}
-// 		else
-// 		{
-// 			ft_swap_b(stack_b, count);
-// 			ft_push_b_to_a(stack_b, stack_a, count);
-// 			ft_push_b_to_a(stack_b, stack_a, count);
-// 		}
-// 		return ;
-// 	}
-// 	index_c = (*stack_b)->next->next->index_sorted;
-// 	if (index_a > index_b && index_b > index_c && index_a > index_c)
-// 	{	
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 	}	
-// 	else if (index_a > index_b && index_b < index_c && index_a > index_c)
-// 	{
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_swap_b(stack_b, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 	}
-// 	else if (index_a < index_b && index_b < index_c && index_a < index_c)
-// 	{
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_swap_b(stack_b, count);
-// 		ft_push_a_to_b(stack_a, stack_b, count);
-// 		ft_swap_b(stack_b, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_swap_b(stack_b, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 	}
-// 	else if (index_a < index_b && index_b > index_c && index_a < index_c)
-// 	{
-// 		ft_swap_b(stack_b, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_swap_b(stack_b, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 	}
-// 	else if (index_a < index_b && index_b > index_c && index_a > index_c)
-// 	{
-// 		ft_swap_b(stack_b, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 	}
-// 	else if (index_a > index_b && index_b < index_c && index_a < index_c)
-// 	{
-// 		ft_swap_b(stack_b, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_swap_b(stack_b, count);
-// 		ft_push_a_to_b(stack_a, stack_b, count);
-// 		ft_swap_b(stack_b, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_swap_b(stack_b, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 		ft_push_b_to_a(stack_b, stack_a, count);
-// 	}
-// }
-
-// void	ft_sort_5_in_full_b_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count)
-// {
-// 	t_stack_list	*begin_a;
-// 	t_stack_list	*begin_b;
-// 	int				working_bloc;
-// 	int				max_bloc;
-// 	int				nb_rotate;
-// 	int				i;
-	
-// 	i = 0;
-// 	working_bloc = (*stack_b)->bloc;
-// 	max_bloc = ft_get_max_in_bloc_10(stack_b, working_bloc);
-// 	nb_rotate = 0;
-// 	begin_b = *stack_b;
-// 	if (ft_get_stack_size(stack_b) > 3)
-// 	{
-// 		while (begin_b->bloc == working_bloc && i < 5)
-// 		{
-			
-// 			if (begin_b->index_sorted > (max_bloc - 2))
-// 				ft_push_b_to_a(stack_b, stack_a, count);
-// 			else
-// 			{
-// 				ft_rotate_b(stack_b, count);
-// 				nb_rotate++;
-// 			}	
-// 			begin_b = *stack_b;
-// 			i++;
-// 		}
-// 		while (nb_rotate != 0)
-// 		{
-// 			ft_reverse_rotate_b(stack_b, count);	
-// 			nb_rotate--;
-// 		}
-// 	}
-// 	begin_a = *stack_a;
-// 	if (begin_a->index_sorted > begin_a->next->index_sorted)
-// 		ft_swap_a(stack_a, count);
-// 	ft_send_3_from_b_in_a_100(stack_a, stack_b, count, working_bloc);
-// }
+	working_bloc = (*stack_b)->bloc;
+	while(working_bloc > 0)
+	{
+		while (ft_is_bloc_present(stack_b, working_bloc) == 1)
+			ft_send_max_from_b_to_a_500(stack_a, stack_b, working_bloc, count);
+		working_bloc = working_bloc - 2;
+	}
+	if (working_bloc <= 0 && !(*stack_b))
+		return ;
+	working_bloc = (*stack_b)->bloc;
+	while(working_bloc <= 20)
+	{
+		while (ft_is_bloc_present(stack_b, working_bloc) == 1)
+			ft_send_max_from_b_to_a_500(stack_a, stack_b, working_bloc, count);
+		working_bloc = working_bloc + 2;
+	}
+}
