@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:28:19 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/08 18:06:27 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/09 11:21:36 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void			ft_sort_5(t_stack_list **stack1, t_stack_list **stack2, int *count, t_ins
 /////////////////////////////// UTILS_v10.C////////////////////////////////
 
 int			ft_distance_10(t_stack_list **stack, int size_stack_init);
-void		ft_exit_case_10(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int size_stack, int size_stack_init);
-void		ft_separate_stack(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int size_stack_init);
+void		ft_exit_case_10(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int size_stack, int size_stack_init, t_instruction_list **instruction_list);
+void		ft_separate_stack(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int size_stack_init, t_instruction_list **instruction_list);
 int			ft_distance_max_in_b(t_stack_list **stack_b);
-void		ft_restore_b_to_a(t_stack_list **stack_b, t_stack_list **stack_a, int *count);
+void		ft_restore_b_to_a(t_stack_list **stack_b, t_stack_list **stack_a, int *count, t_instruction_list **instruction_list);
 
 /////////////////////////////// UTILS_v100.C////////////////////////////////
 
@@ -65,14 +65,14 @@ int			ft_is_bloc_present(t_stack_list **stack_a, int bloc_searched);
 int			ft_distance_min_impair(t_stack_list **stack_a);
 int			ft_distance_min_pair(t_stack_list **stack_a);
 int			ft_distance_100(t_stack_list **stack_a, int *bool);
-void 		ft_send_a_to_b(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
+void 		ft_send_a_to_b(t_stack_list **stack_a, t_stack_list **stack_b, int *count, t_instruction_list **instruction_list);
 int			ft_get_max_in_bloc_10(t_stack_list **stack_b, int working_bloc);
-void		ft_cut_bloc_10_to_5_in_b(t_stack_list **stack_b, t_stack_list **stack_a, int *count);
-void		ft_sort_3_in_a_100(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
-void		ft_sort_3_in_full_a(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
-void		ft_sort_5_in_full_a(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
-void		ft_send_3_from_b_in_a_100(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int working_bloc);
-void		ft_sort_5_in_full_b(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
+void		ft_cut_bloc_10_to_5_in_b(t_stack_list **stack_b, t_stack_list **stack_a, int *count, t_instruction_list **instruction_list);
+void		ft_sort_3_in_a_100(t_stack_list **stack_a, t_stack_list **stack_b, int *count, t_instruction_list **instruction_list);
+void		ft_sort_3_in_full_a(t_stack_list **stack_a, t_stack_list **stack_b, int *count, t_instruction_list **instruction_list);
+void		ft_sort_5_in_full_a(t_stack_list **stack_a, t_stack_list **stack_b, int *count, t_instruction_list **instruction_list);
+void		ft_send_3_from_b_in_a_100(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int working_bloc, t_instruction_list **instruction_list);
+void		ft_sort_5_in_full_b(t_stack_list **stack_a, t_stack_list **stack_b, int *count, t_instruction_list **instruction_list);
 
 /////////////////////////////// UTILS_v500.C////////////////////////////////
 
@@ -81,10 +81,10 @@ int			ft_is_bloc_present_500(t_stack_list **stack_a, int bloc_searched);
 int			ft_distance_min_impair_500(t_stack_list **stack_a);
 int			ft_distance_min_pair_500(t_stack_list **stack_a);
 int			ft_distance_500(t_stack_list **stack_a, int *bool);
-void		ft_send_a_to_b_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
+void		ft_send_a_to_b_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count, t_instruction_list **instruction_list);
 int			ft_get_max_in_bloc_25(t_stack_list **stack, int working_bloc);
-void		ft_send_max_in_bloc_25_from_b_to_a(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int index_max);
-void		ft_send_max_from_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int working_bloc, int *count);
-void		ft_send_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count);
+void		ft_send_max_in_bloc_25_from_b_to_a(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int index_max, t_instruction_list **instruction_list);
+void		ft_send_max_from_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int working_bloc, int *count, t_instruction_list **instruction_list);
+void		ft_send_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count, t_instruction_list **instruction_list);
 
 #endif

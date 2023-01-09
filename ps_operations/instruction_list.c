@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 16:51:46 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/08 18:11:38 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:36:52 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,107 @@ t_instruction_list	*ft_generate_instruction_element(char *instruction)
 		return (NULL);
 	instruction_element->instruction = instruction;
 	instruction_element->next = 0;
-	return(instruction_element);
+	return (instruction_element);
 }
 
-void	ft_add_instruction_to_list(t_instruction_list **instruction_list, char *str)
+void	ft_add_instruction_to_list(t_instruction_list **instruction_list, \
+			char *str)
 {
 	t_instruction_list	*element;
-	
+	t_instruction_list	*last;
+
 	element = ft_generate_instruction_element(str);
 	if (!*instruction_list)
 	{
 		*instruction_list = element;
 		return ;
 	}
-	(*instruction_list)->next = element;
-	*instruction_list = (*instruction_list)->next;
+	last = *instruction_list;
+	while (last->next)
+		last = last->next;
+	(last)->next = element;
+	// last = (*instruction_list)->next;
+}
+
+void	ft_opti_swap(t_instruction_list **instruction_list, int *count)
+{
+	t_instruction_list	*begin;
+	t_instruction_list	*evacuate;
+
+	begin = *instruction_list;
+	while (begin->next)
+	{
+		if (begin->instruction[0] == 's' && begin->next->instruction[0] == 's')
+		{
+			if ((begin->instruction[1] == 'a' && \
+			begin->next->instruction[1] == 'b') || \
+			(begin->instruction[1] == 'b' && \
+			begin->next->instruction[1] == 'a'))
+			{
+				begin->instruction[1] = 's';
+				evacuate = begin->next;
+				begin->next = evacuate->next;
+				ft_free_instruction_bloc(evacuate);
+				*count = *count - 1;
+			}				
+		}
+		begin = begin->next;
+	}
+}
+
+void	ft_opti_rotate(t_instruction_list **instruction_list, int *count)
+{
+	t_instruction_list	*begin;
+	t_instruction_list	*evacuate;
+
+	begin = *instruction_list;
+	while (begin->next)
+	{
+		if (begin->instruction[0] == 'r' && \
+		begin->next->instruction[0] == 'r' && \
+		begin->instruction[1] != 'r' && begin->next->instruction[1] != 'r')
+		{
+			if ((begin->instruction[1] == 'a' && \
+			begin->next->instruction[1] == 'b') || \
+			(begin->instruction[1] == 'b' && \
+			begin->next->instruction[1] == 'a'))
+			{
+				begin->instruction[1] = 'r';
+				evacuate = begin->next;
+				begin->next = evacuate->next;
+				ft_free_instruction_bloc(evacuate);
+				*count = *count - 1;
+			}				
+		}
+		begin = begin->next;
+	}
+}
+
+void	ft_opti_reverse_rotate(t_instruction_list **instruction_list, \
+								int *count)
+{
+	t_instruction_list	*begin;
+	t_instruction_list	*evacuate;
+
+	begin = *instruction_list;
+	while (begin->next)
+	{
+		if (begin->instruction[0] == 'r' && begin->next->instruction[0] == 'r' \
+		&& begin->instruction[1] == 'r' && begin->next->instruction[1] == 'r' \
+		&& begin->instruction[1] == '\0' && begin->next->instruction[1] == '\0')
+		{
+			if ((begin->instruction[2] == 'a' && \
+			begin->next->instruction[2] == 'b') || \
+			(begin->instruction[2] == 'b' && \
+			begin->next->instruction[2] == 'a'))
+			{
+				begin->instruction[2] = 'r';
+				evacuate = begin->next;
+				begin->next = evacuate->next;
+				ft_free_instruction_bloc(evacuate);
+				*count = *count - 1;
+			}				
+		}
+		begin = begin->next;
+	}
 }

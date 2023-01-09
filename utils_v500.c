@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:41:13 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/08 16:13:57 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/09 11:20:50 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ int	ft_distance_500(t_stack_list **stack_a, int *bool)
 	return (dist_min);
 }
 
-void ft_send_a_to_b_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count)
+void ft_send_a_to_b_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count, t_instruction_list **instruction_list)
 {
 	int	bool;
 	int distance;
@@ -200,23 +200,23 @@ void ft_send_a_to_b_500(t_stack_list **stack_a, t_stack_list **stack_b, int *cou
 		nb_operation = size_stack - distance;
 		while (nb_operation)
 		{
-			ft_reverse_rotate_a(stack_a, count);
+			ft_reverse_rotate_a(stack_a, count, instruction_list);
 			nb_operation--;
 		}
-		ft_push_a_to_b(stack_a, stack_b, count);
+		ft_push_a_to_b(stack_a, stack_b, count, instruction_list);
 		if (bool == 2)
-			ft_rotate_b(stack_b, count);
+			ft_rotate_b(stack_b, count, instruction_list);
 	}
 	else
 	{
 		while (distance)
 		{
-			ft_rotate_a(stack_a, count);
+			ft_rotate_a(stack_a, count, instruction_list);
 			distance--;
 		}
-		ft_push_a_to_b(stack_a, stack_b, count);
+		ft_push_a_to_b(stack_a, stack_b, count, instruction_list);
 		if (bool == 2)
-			ft_rotate_b(stack_b, count);
+			ft_rotate_b(stack_b, count, instruction_list);
 	}
 }
 
@@ -236,7 +236,7 @@ int	ft_get_max_in_bloc_25(t_stack_list **stack, int working_bloc)
 	return(index_max);
 }
 
-void	ft_send_max_in_bloc_25_from_b_to_a(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int index_max)
+void	ft_send_max_in_bloc_25_from_b_to_a(t_stack_list **stack_a, t_stack_list **stack_b, int *count, int index_max, t_instruction_list **instruction_list)
 {
 	t_stack_list	*begin_b;
 	int				size_stack;
@@ -254,32 +254,32 @@ void	ft_send_max_in_bloc_25_from_b_to_a(t_stack_list **stack_a, t_stack_list **s
 	{
 		while (distance)
 		{
-			ft_rotate_b(stack_b, count);
+			ft_rotate_b(stack_b, count, instruction_list);
 			distance--;
 		}
-		ft_push_b_to_a(stack_b, stack_a, count);
+		ft_push_b_to_a(stack_b, stack_a, count, instruction_list);
 	}
 	else if ((distance > 12 && distance < 25 && size_stack <= 25) || distance >= 25)
 	{
 		distance = size_stack - distance;
 		while (distance)
 		{
-			ft_reverse_rotate_b(stack_b, count);
+			ft_reverse_rotate_b(stack_b, count, instruction_list);
 			distance--;
 		}
-		ft_push_b_to_a(stack_b, stack_a, count);
+		ft_push_b_to_a(stack_b, stack_a, count, instruction_list);
 	}
 }
 
-void	ft_send_max_from_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int working_bloc, int *count)
+void	ft_send_max_from_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int working_bloc, int *count, t_instruction_list **instruction_list)
 {
 	int index_max;
 
 	index_max = ft_get_max_in_bloc_25(stack_b, working_bloc);
-	ft_send_max_in_bloc_25_from_b_to_a(stack_a, stack_b, count, index_max);
+	ft_send_max_in_bloc_25_from_b_to_a(stack_a, stack_b, count, index_max, instruction_list);
 }
 
-void	ft_send_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count)
+void	ft_send_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *count, t_instruction_list **instruction_list)
 {
 	int	working_bloc;
 
@@ -287,7 +287,7 @@ void	ft_send_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *cou
 	while(working_bloc > 0)
 	{
 		while (ft_is_bloc_present(stack_b, working_bloc) == 1)
-			ft_send_max_from_b_to_a_500(stack_a, stack_b, working_bloc, count);
+			ft_send_max_from_b_to_a_500(stack_a, stack_b, working_bloc, count, instruction_list);
 		working_bloc = working_bloc - 2;
 	}
 	if (working_bloc <= 0 && !(*stack_b))
@@ -296,7 +296,7 @@ void	ft_send_b_to_a_500(t_stack_list **stack_a, t_stack_list **stack_b, int *cou
 	while(working_bloc <= 20)
 	{
 		while (ft_is_bloc_present(stack_b, working_bloc) == 1)
-			ft_send_max_from_b_to_a_500(stack_a, stack_b, working_bloc, count);
+			ft_send_max_from_b_to_a_500(stack_a, stack_b, working_bloc, count, instruction_list);
 		working_bloc = working_bloc + 2;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:27:36 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/04 09:50:11 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:03:15 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	*ft_sort(int *tab, int argc)
 	return (sorted_tab);
 }
 
-
 void	ft_get_index_sorted(t_stack_list **stack_a, int *tab, int argc)
 {
 	t_stack_list	*begin;
@@ -89,5 +88,3 @@ int	ft_get_mediane_value(int *tab, int size_tab)
 	else
 		return (tab[size_tab / 2]);
 }
-
-
