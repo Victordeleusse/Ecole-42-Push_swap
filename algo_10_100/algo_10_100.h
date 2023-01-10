@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:59:58 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/10 18:02:45 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:48:19 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,24 @@ void			ft_send_3_test_1(t_stack_list **stack_a, \
 		t_stack_list **stack_b, t_instruction_list **instruction_list);
 void			ft_send_3_exec_1(t_stack_list **stack_a, \
 		t_stack_list **stack_b, t_instruction_list **instruction_list);
+void			ft_send_3_exec_2(t_stack_list **stack_a, \
+		t_stack_list **stack_b, t_instruction_list **instruction_list);
+void			ft_send_3_exec_3(t_stack_list **stack_a, \
+		t_stack_list **stack_b, t_instruction_list **instruction_list);
+void			ft_send_3_exec_4(t_stack_list **stack_a, \
+		t_stack_list **stack_b, t_instruction_list **instruction_list);
+void			ft_send_3_exec_5(t_stack_list **stack_a, \
+		t_stack_list **stack_b, t_instruction_list **instruction_list);
+void			ft_send_3_exec_6(t_stack_list **stack_a, \
+		t_stack_list **stack_b, t_instruction_list **instruction_list);
+void			ft_send_3_exec_global(t_stack_list **stack_a, \
+	t_stack_list **stack_b, t_instruction_list **instruction_list);
 void			ft_send_3_from_b_in_a_100(t_stack_list **stack_a, \
 		t_stack_list **stack_b, int working_bloc, \
 		t_instruction_list **instruction_list);
+void			ft_sort_5_condition(t_stack_list **stack_a, \
+		t_stack_list **stack_b, t_instruction_list **instruction_list, \
+		int working_bloc);
 void			ft_sort_5_in_full_b(t_stack_list **stack_a, \
 		t_stack_list **stack_b, t_instruction_list **instruction_list);
 
