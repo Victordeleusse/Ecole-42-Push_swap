@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 09:53:56 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/09 16:02:56 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:08:19 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 /* inversion du premier et du second element de la pile */
 
-void	ft_swap_a(t_stack_list **stack, int *count, \
+void	ft_swap_a(t_stack_list **stack, \
 	t_instruction_list **instruction_list)
 {
 	t_stack_list	*first;
@@ -37,13 +37,12 @@ void	ft_swap_a(t_stack_list **stack, int *count, \
 	second->next = first;
 	second->previous = 0;
 	*stack = second;
-	(*count)++;
 	instruction[0] = 's';
 	instruction[1] = 'a';
 	ft_add_instruction_to_list(instruction_list, instruction);
 }
 
-void	ft_swap_b(t_stack_list **stack, int *count, \
+void	ft_swap_b(t_stack_list **stack, \
 	t_instruction_list **instruction_list)
 {
 	t_stack_list	*first;
@@ -64,24 +63,22 @@ void	ft_swap_b(t_stack_list **stack, int *count, \
 	second->next = first;
 	second->previous = 0;
 	*stack = second;
-	(*count)++;
 	instruction[0] = 's';
 	instruction[1] = 'b';
 	ft_add_instruction_to_list(instruction_list, instruction);
 }
 
 void	ft_double_swap(t_stack_list **stack1, t_stack_list **stack2, \
-	int *count, t_instruction_list **instruction_list)
+	t_instruction_list **instruction_list)
 {
-	ft_swap_a(stack1, count, instruction_list);
-	ft_swap_b(stack2, count, instruction_list);
-	count--;
+	ft_swap_a(stack1, instruction_list);
+	ft_swap_b(stack2, instruction_list);
 }
 
 /* premier element de 1 vers haut de la pile 2 */
 
 void	ft_push_a_to_b(t_stack_list **stack_a, t_stack_list **stack_b, \
-	int *count, t_instruction_list **instruction_list)
+	t_instruction_list **instruction_list)
 {
 	t_stack_list	*elem_top;
 	char			*instruction;
@@ -93,14 +90,13 @@ void	ft_push_a_to_b(t_stack_list **stack_a, t_stack_list **stack_b, \
 		return ;
 	elem_top = ft_pop_first(stack_a);
 	ft_add_first(stack_b, elem_top);
-	(*count)++;
 	instruction[0] = 'p';
 	instruction[1] = 'b';
 	ft_add_instruction_to_list(instruction_list, instruction);
 }
 
 void	ft_push_b_to_a(t_stack_list **stack_b, t_stack_list **stack_a, \
-	int *count, t_instruction_list **instruction_list)
+	t_instruction_list **instruction_list)
 {
 	t_stack_list	*elem_top;
 	char			*instruction;
@@ -112,7 +108,6 @@ void	ft_push_b_to_a(t_stack_list **stack_b, t_stack_list **stack_a, \
 		return ;
 	elem_top = ft_pop_first(stack_b);
 	ft_add_first(stack_a, elem_top);
-	(*count)++;
 	instruction[0] = 'p';
 	instruction[1] = 'a';
 	ft_add_instruction_to_list(instruction_list, instruction);

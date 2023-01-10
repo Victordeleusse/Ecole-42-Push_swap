@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 16:51:46 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/09 17:36:52 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:06:12 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ void	ft_add_instruction_to_list(t_instruction_list **instruction_list, \
 	while (last->next)
 		last = last->next;
 	(last)->next = element;
-	// last = (*instruction_list)->next;
 }
 
-void	ft_opti_swap(t_instruction_list **instruction_list, int *count)
+void	ft_opti_swap(t_instruction_list **instruction_list)
 {
 	t_instruction_list	*begin;
 	t_instruction_list	*evacuate;
@@ -62,14 +61,13 @@ void	ft_opti_swap(t_instruction_list **instruction_list, int *count)
 				evacuate = begin->next;
 				begin->next = evacuate->next;
 				ft_free_instruction_bloc(evacuate);
-				*count = *count - 1;
 			}				
 		}
 		begin = begin->next;
 	}
 }
 
-void	ft_opti_rotate(t_instruction_list **instruction_list, int *count)
+void	ft_opti_rotate(t_instruction_list **instruction_list)
 {
 	t_instruction_list	*begin;
 	t_instruction_list	*evacuate;
@@ -90,15 +88,13 @@ void	ft_opti_rotate(t_instruction_list **instruction_list, int *count)
 				evacuate = begin->next;
 				begin->next = evacuate->next;
 				ft_free_instruction_bloc(evacuate);
-				*count = *count - 1;
 			}				
 		}
 		begin = begin->next;
 	}
 }
 
-void	ft_opti_reverse_rotate(t_instruction_list **instruction_list, \
-								int *count)
+void	ft_opti_reverse_rotate(t_instruction_list **instruction_list)
 {
 	t_instruction_list	*begin;
 	t_instruction_list	*evacuate;
@@ -119,7 +115,6 @@ void	ft_opti_reverse_rotate(t_instruction_list **instruction_list, \
 				evacuate = begin->next;
 				begin->next = evacuate->next;
 				ft_free_instruction_bloc(evacuate);
-				*count = *count - 1;
 			}				
 		}
 		begin = begin->next;

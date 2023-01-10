@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 14:27:36 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/09 16:03:15 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:08:34 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	ft_get_index_sorted(t_stack_list **stack_a, int *tab, int argc)
 		}
 		i++;
 	}
+	free (sorted_tab);
 }
 
 int	ft_get_mediane_value(int *tab, int size_tab)
@@ -87,4 +88,11 @@ int	ft_get_mediane_value(int *tab, int size_tab)
 		return (tab[(size_tab - 1) / 2]);
 	else
 		return (tab[size_tab / 2]);
+}
+
+void	ft_double_reverse_rotate(t_stack_list **stack_a, \
+	t_stack_list **stack_b, t_instruction_list **instruction_list)
+{
+	ft_reverse_rotate_a(stack_a, instruction_list);
+	ft_reverse_rotate_b(stack_b, instruction_list);
 }

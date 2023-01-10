@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 10:05:02 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/09 16:44:01 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:09:43 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,25 @@ typedef struct s_instruction_list
 t_instruction_list	*ft_generate_instruction_element(char *instruction);
 void				ft_add_instruction_to_list(t_instruction_list **list, \
 						char *str);
-void				ft_opti_swap(t_instruction_list **instruction_list, \
-						int *count);
-void				ft_opti_rotate(t_instruction_list **instruction_list, \
-						int *count);
-void				ft_opti_reverse_rotate(t_instruction_list **list, \
-						int *count);
+void				ft_opti_swap(t_instruction_list **instruction_list);
+void				ft_opti_rotate(t_instruction_list **instruction_list);
+void				ft_opti_reverse_rotate(t_instruction_list **list);
 
 /* swap between the first and the second element of a stack */
-void				ft_swap_a(t_stack_list **stack, int *count, \
+void				ft_swap_a(t_stack_list **stack, \
 			t_instruction_list **instruction_list);
-void				ft_swap_b(t_stack_list **stack, int *count, \
+void				ft_swap_b(t_stack_list **stack, \
 			t_instruction_list **instruction_list);
 void				ft_double_swap(t_stack_list **stack1, \
 			t_stack_list **stack2, \
-			int *count, t_instruction_list **instruction_list);
+			t_instruction_list **instruction_list);
 
 void				ft_push_a_to_b(t_stack_list **stack_a, \
 			t_stack_list **stack_b, \
-			int *count, t_instruction_list **instruction_list);
+			t_instruction_list **instruction_list);
 void				ft_push_b_to_a(t_stack_list **stack_b, \
 			t_stack_list **stack_a, \
-			int *count, t_instruction_list **instruction_list);
+			t_instruction_list **instruction_list);
 /* extraction of the first element of a stack */
 t_stack_list		*ft_pop_first(t_stack_list **stack);
 /* extraction of the last element of a stack */
@@ -53,20 +50,20 @@ void				ft_add_first(t_stack_list **stack, t_stack_list *element);
 /* adding an element to the bottom of a stack */
 void				ft_add_last(t_stack_list **stack, t_stack_list *element);
 /* 'rotation' of the stack -> first elem becoming last */
-void				ft_rotate_a(t_stack_list **stack_a, int *count, \
+void				ft_rotate_a(t_stack_list **stack_a, \
 			t_instruction_list **instruction_list);
-void				ft_rotate_b(t_stack_list **stack_b, int *count, \
+void				ft_rotate_b(t_stack_list **stack_b, \
 			t_instruction_list **instruction_list);
 void				ft_double_rotate(t_stack_list **stack_a, \
-			t_stack_list **stack_b, int *count, \
+			t_stack_list **stack_b, \
 			t_instruction_list **instruction_list);
 /* 'inverse rotation' of the stack -> last elem becoming first */
-void				ft_reverse_rotate_a(t_stack_list **stack_a, int *count, \
+void				ft_reverse_rotate_a(t_stack_list **stack_a, \
 			t_instruction_list **instruction_list);
-void				ft_reverse_rotate_b(t_stack_list **stack_b, int *count, \
+void				ft_reverse_rotate_b(t_stack_list **stack_b, \
 			t_instruction_list **instruction_list);
 void				ft_double_reverse_rotate(t_stack_list **stack_a, \
-			t_stack_list **stack_b, int *count, \
+			t_stack_list **stack_b, \
 			t_instruction_list **instruction_list);
 
 /////////////////////////////// TRI A BULLE.C ////////////////////////////////
