@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:31:21 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/10 11:11:12 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:57:08 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	ft_case_end(t_stack_list **stack_a, \
 		ft_rotate_a(stack_a, instruction_list);
 		ft_swap_a(stack_a, instruction_list);
 		ft_reverse_rotate_a(stack_a, instruction_list);
-		ft_swap_a(stack_a, instruction_list);			
+		ft_swap_a(stack_a, instruction_list);
 	}
 }
 
