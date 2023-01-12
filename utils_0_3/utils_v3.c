@@ -6,11 +6,11 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 17:31:21 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/11 14:57:08 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:08:50 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 int	ft_get_pos_min(t_stack_list **stack_a)
 {

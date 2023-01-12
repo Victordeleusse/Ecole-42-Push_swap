@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:03:32 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/10 10:29:59 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:35:25 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_free_stack(t_stack_list **stack)
 	t_stack_list	*begin;
 	t_stack_list	*evacuate;
 
-	if (!*stack)
+	if (!*stack || !stack)
 		return ;
 	begin = *stack;
 	while (begin)
@@ -68,4 +68,14 @@ void	ft_free_stack(t_stack_list **stack)
 		ft_free_stack_element(evacuate);
 	}
 	free (stack);
+}
+
+void	ft_free(t_stack_list **stack_a, t_stack_list **stack_b, \
+	t_instruction_list *instruction_list, int *tab)
+{
+	ft_free_instruction_list(instruction_list->next);
+	free(instruction_list);
+	ft_free_stack(stack_a);
+	ft_free_stack(stack_b);
+	free(tab);
 }

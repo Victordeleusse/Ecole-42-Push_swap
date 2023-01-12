@@ -6,11 +6,11 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 12:01:06 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/11 14:56:52 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:07:48 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pushswap.h"
+#include "../pushswap.h"
 
 /* Determine la mediane de mon stack : son indice aka sa position
 // ainsi que sa valeur */

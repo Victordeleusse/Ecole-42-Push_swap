@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:15:27 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/11 16:54:09 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:55:56 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,6 @@ void	ft_opti_display(t_instruction_list *instruction_list)
 		ft_printf("%s\n", begin_list->instruction);
 		begin_list = begin_list->next;
 	}
-}
-
-void	ft_free(t_stack_list **stack_a, t_stack_list **stack_b, \
-	t_instruction_list *instruction_list, int *tab)
-{
-	ft_free_instruction_list(instruction_list->next);
-	free(instruction_list);
-	ft_free_stack(stack_a);
-	ft_free_stack(stack_b);
-	free(tab);
 }
 
 void	ft_operation(t_stack_list **stack_a, t_stack_list **stack_b, \
@@ -73,8 +63,7 @@ int	main(int argc, char **argv)
 	t_stack_list		**stack_b;
 	t_instruction_list	*instruction_list;
 
-	if (ft_strncmp(argv[0], "./checker", 9) == 0)
-		printf("BONUS\n");
+
 	tab = ft_generate_tab_int(argc, argv);
 	if (tab == NULL)
 		return (0);
@@ -89,5 +78,6 @@ int	main(int argc, char **argv)
 	ft_operation(stack_a, stack_b, instruction_list, argc);
 	ft_opti_display(instruction_list);
 	ft_free(stack_a, stack_b, instruction_list, tab);
+	printf("data : %d\n", (*stack_b)->data);
 	return (0);
 }

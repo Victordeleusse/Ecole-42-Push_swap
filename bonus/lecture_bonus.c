@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:22:59 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/11 18:52:11 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:17:46 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,39 @@ char	**ft_generate_instruction_tab(void)
 
 int	ft_order_is_available(char **instruction_tab, char *order)
 {
-	int	count;
-	int	order_len;
+	int		count;
+	size_t	order_len;
 
 	order_len = ft_strlen(order);
 	count = 0;
 	while (instruction_tab[count])
 	{
-		if ((ft_strncmp(instruction_tab[count], order, order_len) == 0) && \
-			ft_strlen(instruction_tab[count]) == order_len)
+		if ((ft_strncmp(instruction_tab[count], order, order_len - 1) == 0) && \
+			ft_strlen(instruction_tab[count]) == order_len - 1)
 			return (1);
 		count++;
 	}
 	return (0);
 }
 
-t_instruction_list	*ft_generate_instruction_bloc(char **instruction_tab, char *order)
+t_instruction_list	*ft_generate_instruction_bloc(char **instruction_tab, \
+		char *order)
 {
-	t_instruction_list	*bloc;
+	t_instruction_list	*instruction_bloc;
+	int					bool;
+	size_t				len_order;
 
-	if (ft_order_is_available(instruction_tab, order) == 0)
+	bool = ft_order_is_available(instruction_tab, order);
+	if (bool == 0)
 		return (NULL);
-	bloc = ft_calloc(sizeof(t_instruction_list), 1);
-	if (!bloc)
+	instruction_bloc = ft_calloc(sizeof(t_instruction_list), 1);
+	if (!instruction_bloc)
 		return (NULL);
-	bloc->instruction = order;
-	bloc->next = NULL;
-	return (bloc);
+	instruction_bloc->instruction = order;
+	len_order = ft_strlen(order);
+	instruction_bloc->instruction[len_order - 1] = '\0';
+	instruction_bloc->next = 0;
+	return (instruction_bloc);
 }
 
 t_instruction_list	**ft_generate_instruction_list(int fd)
@@ -70,20 +76,16 @@ t_instruction_list	**ft_generate_instruction_list(int fd)
 	t_instruction_list	**instruction_lst;
 	t_instruction_list	*begin;
 	t_instruction_list	*next_bloc;
-	char				**instruction_tab;
 	char				*order;
+	char				**instruction_tab;
 
 	instruction_tab = ft_generate_instruction_tab();
-	if (!instruction_tab)
-		return (NULL);
-	instruction_lst = ft_calloc(sizeof(t_instruction_list *), 1);
-	if (!instruction_lst)
-		return (NULL);
 	order = get_next_line(fd);
-	if (order == NULL)
-		return (NULL);
 	begin = ft_generate_instruction_bloc(instruction_tab, order);
-	*instruction_lst = begin;
+	instruction_lst = ft_calloc(sizeof(t_instruction_list *), 1);
+	if (!instruction_tab || !instruction_lst || order == NULL || begin == NULL)
+		return (NULL);
+	(*instruction_lst) = begin;
 	while (1)
 	{
 		order = get_next_line(fd);
@@ -95,4 +97,5 @@ t_instruction_list	**ft_generate_instruction_list(int fd)
 		begin->next = next_bloc;
 		begin = next_bloc;
 	}
+	return (instruction_lst);
 }
