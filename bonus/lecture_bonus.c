@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:22:59 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/12 12:17:46 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:33:03 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,9 @@ t_instruction_list	**ft_generate_instruction_list(int fd)
 		if (order == NULL)
 			break ;
 		next_bloc = ft_generate_instruction_bloc(instruction_tab, order);
-		if (!next_bloc)
-			return (NULL);
 		begin->next = next_bloc;
 		begin = next_bloc;
 	}
+	free (instruction_tab);
 	return (instruction_lst);
 }

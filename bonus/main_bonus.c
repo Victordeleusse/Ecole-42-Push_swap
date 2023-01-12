@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 12:09:41 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/12 17:02:11 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:43:43 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	ft_operation_bonus_rotate(t_instruction_list **instruction_lst, \
 				stack_a, stack_b);
 		begin = begin->next;
 	}
+	ft_free_instruction_list(instruction_lst_annexe);
 }
 
 int	ft_check_checker(t_stack_list **stack_a, int argc)
@@ -112,6 +113,6 @@ int	main(int argc, char **argv)
 		ft_printf("KO\n");
 	else
 		ft_printf("OK\n");
-	
+	ft_free(stack_a, stack_b, instruction_lst, tab);
 	return (0);
 }

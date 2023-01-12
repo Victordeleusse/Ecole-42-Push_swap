@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:32:33 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/12 17:46:34 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:59:03 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ t_stack_list	**ft_generate_empty_stack(int argc)
 {
 	t_stack_list	**stack;
 
-	stack = ft_calloc(sizeof(t_stack_list *), argc - 1);
+	(void)argc;
+	stack = ft_calloc(sizeof(t_stack_list *), 1);
 	return (stack);
 }

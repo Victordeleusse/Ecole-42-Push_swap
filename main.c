@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/22 16:15:27 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/12 17:55:56 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:00:05 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,5 @@ int	main(int argc, char **argv)
 	ft_operation(stack_a, stack_b, instruction_list, argc);
 	ft_opti_display(instruction_list);
 	ft_free(stack_a, stack_b, instruction_list, tab);
-	printf("data : %d\n", (*stack_b)->data);
 	return (0);
 }

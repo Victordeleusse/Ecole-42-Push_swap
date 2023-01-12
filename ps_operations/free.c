@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:03:32 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/12 17:35:25 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:03:38 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,13 @@ void	ft_free_stack(t_stack_list **stack)
 	t_stack_list	*begin;
 	t_stack_list	*evacuate;
 
-	if (!*stack || !stack)
+	if (!stack)
 		return ;
+	if (!*stack)
+	{
+		free (stack);
+		return ;
+	}
 	begin = *stack;
 	while (begin)
 	{
