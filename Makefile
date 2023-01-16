@@ -22,7 +22,7 @@ SRCS_ALGO_100_500 = algo_100_500/utils_v500.c algo_100_500/init_bloc_500.c algo_
 
 SRCS += $(SRCS_UTILS) $(SRCS_LECTURE) $(SRCS_OPERATION) $(SRCS_ALGO_3_5) $(SRCS_ALGO_5_10) $(SRCS_ALGO_10_100) $(SRCS_ALGO_100_500)
 
-SRCS_BONUS = bonus/main_bonus.c bonus/lecture_bonus.c
+SRCS_BONUS = bonus/main_bonus.c bonus/lecture_bonus.c bonus/free_bonus.c
 
 SRCS_BONUS += $(SRCS_UTILS) $(SRCS_LECTURE) $(SRCS_OPERATION) $(SRCS_ALGO_3_5) $(SRCS_ALGO_5_10) $(SRCS_ALGO_10_100) $(SRCS_ALGO_100_500)
  
@@ -43,7 +43,8 @@ CFLAGS += -Werror
 CFLAGS += -Wextra
 
 # CFLAGS += -fsanitize=address,undefined -g2
-# CFLAGS += -valgrind 
+# CFLAGS += -valgrind
+# CFLAGS += -g 
 
 %.o: %.c 
 			${CC} -I. ${LIBFT_PATH} -MMD -c $< -o ${<:.c=.o}

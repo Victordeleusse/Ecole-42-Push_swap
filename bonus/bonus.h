@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:24:59 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/12 16:03:06 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:40:33 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,13 @@ char				**ft_generate_instruction_tab(void);
 int					ft_order_is_available(char **instruction_tab, char *order);
 t_instruction_list	*ft_generate_instruction_bloc(char **instruction_tab, \
 				char *order);
-t_instruction_list	**ft_generate_instruction_list(int fd);
-int					main(int argc, char **argv);
+t_instruction_list	*ft_generate_instruction_list(int fd);
+
+////////////////////// FREE.C //////////////////////
+
+void				ft_free_instruction_tab(char **tab);
+void				ft_free_bonus(t_stack_list **stack_a, \
+	t_stack_list **stack_b, t_instruction_list *instruction_list, int *tab);
 
 ////////////////////// MAIN.C //////////////////////
 

@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:28:06 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/11 10:49:53 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/16 14:49:38 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void			ft_calculate_dist_min_impair(t_stack_list **begin_a, \
 int				ft_distance_min_impair_500(t_stack_list **stack_a);
 int				ft_distance_min_pair_500(t_stack_list **stack_a);
 int				ft_distance_500(t_stack_list **stack_a, int *bool);
+void			ft_send_a_to_b_from_top_500(t_stack_list **stack_a, \
+		t_stack_list **stack_b, t_instruction_list **instruction_list);
 void			ft_send_a_to_b_500(t_stack_list **stack_a, \
 		t_stack_list **stack_b, t_instruction_list **instruction_list);
 int				ft_get_max_in_bloc_25(t_stack_list **stack, int working_bloc);

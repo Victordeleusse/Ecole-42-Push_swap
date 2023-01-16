@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 12:09:41 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/12 18:43:43 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:04:33 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ft_operation_bonus_swap_push_rev(t_instruction_list *begin, \
 	else if (begin->instruction[0] == 'r' && begin->instruction[1] == 'r' \
 		&& begin->instruction[2] == 'a')
 		ft_reverse_rotate_a(stack_a, &instruction_lst_annexe);
+	else if (begin->instruction[0] == 'r' && begin->instruction[1] == 'b')
+		ft_rotate_b(stack_b, &instruction_lst_annexe);
 	else if (begin->instruction[0] == 'r' && begin->instruction[1] == 'r' \
 		&& begin->instruction[2] == 'b')
 		ft_reverse_rotate_b(stack_b, &instruction_lst_annexe);
@@ -52,8 +54,6 @@ void	ft_operation_bonus_rotate(t_instruction_list **instruction_lst, \
 	{
 		if (begin->instruction[0] == 'r' && begin->instruction[1] == 'a')
 			ft_rotate_a(stack_a, &instruction_lst_annexe);
-		else if (begin->instruction[0] == 'r' && begin->instruction[1] == 'b')
-			ft_rotate_b(stack_b, &instruction_lst_annexe);
 		else if (begin->instruction[0] == 'r' && begin->instruction[1] == 'r' \
 			&& begin->instruction[2] == '\0')
 		{
@@ -65,7 +65,8 @@ void	ft_operation_bonus_rotate(t_instruction_list **instruction_lst, \
 				stack_a, stack_b);
 		begin = begin->next;
 	}
-	ft_free_instruction_list(instruction_lst_annexe);
+	ft_free_instruction_list(instruction_lst_annexe->next);
+	free(instruction_lst_annexe);
 }
 
 int	ft_check_checker(t_stack_list **stack_a, int argc)
@@ -89,11 +90,10 @@ int	ft_check_checker(t_stack_list **stack_a, int argc)
 	return (1);
 }
 
-
 int	main(int argc, char **argv)
 {
 	int					*tab;
-	t_instruction_list	**instruction_lst;
+	t_instruction_list	*instruction_lst;
 	t_stack_list		**stack_a;
 	t_stack_list		**stack_b;
 
@@ -108,11 +108,11 @@ int	main(int argc, char **argv)
 	if (!stack_a || !stack_b)
 		return (0);
 	ft_get_index_sorted(stack_a, tab, argc);
-	ft_operation_bonus_rotate(instruction_lst, stack_a, stack_b);
+	ft_operation_bonus_rotate(&instruction_lst, stack_a, stack_b);
 	if (ft_check_checker(stack_a, argc) == 0)
 		ft_printf("KO\n");
 	else
 		ft_printf("OK\n");
-	ft_free(stack_a, stack_b, instruction_lst, tab);
+	ft_free_bonus(stack_a, stack_b, instruction_lst, tab);
 	return (0);
 }

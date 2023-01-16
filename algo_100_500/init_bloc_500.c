@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:44:23 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/11 10:44:59 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/16 15:03:23 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_start_impair(t_stack_list *begin_a, \
 	int mediane_index, int size_init)
 {
 	int				starting_bloc_impair;
-
 
 	starting_bloc_impair = 1;
 	while (mediane_index < (size_init + 1))
