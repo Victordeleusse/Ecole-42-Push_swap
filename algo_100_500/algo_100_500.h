@@ -6,7 +6,7 @@
 /*   By: vde-leus <vde-leus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 10:28:06 by vde-leus          #+#    #+#             */
-/*   Updated: 2023/01/16 14:49:38 by vde-leus         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:10:08 by vde-leus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,5 @@ void			ft_send_max_from_b_to_a_500(t_stack_list **stack_a, \
 		t_instruction_list **instruction_list);
 void			ft_send_b_to_a_500(t_stack_list **stack_a, \
 		t_stack_list **stack_b, t_instruction_list **instruction_list);
-
 
 #endif
