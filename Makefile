@@ -54,11 +54,11 @@ all: run
 run: ${OBJS}
 		$(MAKE) -C Libft/ all
 		clear
-		$(CC) -o ${EXEC} $(CFLAGS) ${OBJS} ${LIBFT_PATH} 
+		@ $(CC) -o ${EXEC} $(CFLAGS) ${OBJS} ${LIBFT_PATH}
 
 run_bonus: ${OBJS_BONUS} 
 			$(MAKE) all
-			$(CC) -o ${EXEC_BONUS} $(CFLAGS) ${OBJS_BONUS} ${LIBFT_PATH} 
+			@ $(CC) -o ${EXEC_BONUS} $(CFLAGS) ${OBJS_BONUS} ${LIBFT_PATH} 
 
 
 clean:	
